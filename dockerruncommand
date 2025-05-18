@@ -5,8 +5,12 @@ docker-compose logs -f
 
 docker exec -it <containerid> mongosh 
 
-docker run -d --name mongodb-demo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -p 27018:27017 -v "C:\\jegan\\automation\\mongodb\\mongodbdata:/data/db" mongo
+mongosh "mongodb://admin:admin@localhost:27017/?authSource=admin&directConnection=true"
 
+
+
+
+docker run -d --name mongodb-demo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -p 27018:27017 -v "C:\\jegan\\automation\\mongodb\\mongodbdata:/data/db" mongo
 
 
 
