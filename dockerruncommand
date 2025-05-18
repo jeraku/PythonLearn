@@ -1,0 +1,19 @@
+docker-compose up -d
+docker ps
+docker-compose down
+docker-compose logs -f
+
+docker exec -it <containerid> mongosh 
+
+docker run -d --name mongodb-demo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -p 27018:27017 -v "C:\\jegan\\automation\\mongodb\\mongodbdata:/data/db" mongo
+
+
+
+
+**
+To check for the mount values.**
+- Verify the bind mount in your container
+docker inspect mongodb
+- Look for "Mounts" → "Source": "C:\\jegan\\automation\\mongodb\\mongodbdata"
+
+

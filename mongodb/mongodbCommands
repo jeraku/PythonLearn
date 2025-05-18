@@ -1,0 +1,66 @@
+Database Commands
+- Show all databases:
+show dbs
+- Switch to a database (or create one):
+use my_database
+- Delete a database:
+db.dropDatabase()
+
+
+Collection Commands
+- Show all collections in a database:
+show collections
+- Create a collection:
+db.createCollection("my_collection")
+- Delete a collection:
+db.my_collection.drop()
+
+
+CRUD Operations
+Create (Insert Data)
+- Insert a single document:
+db.my_collection.insertOne({ name: "Alice", age: 25 })
+- Insert multiple documents:
+db.my_collection.insertMany([
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 }
+])
+
+
+Read (Retrieve Data)
+- Find all documents:
+db.my_collection.find()
+- Find documents with formatting:
+db.my_collection.find().pretty()
+- Find a specific document:
+db.my_collection.findOne({ name: "Alice" })
+
+
+Update (Modify Data)
+- Update a single document:
+db.my_collection.updateOne({ name: "Alice" }, { $set: { age: 26 } })
+- Update multiple documents:
+db.my_collection.updateMany({ age: { $lt: 30 } }, { $set: { status: "young" } })
+
+
+Delete (Remove Data)
+- Delete a single document:
+db.my_collection.deleteOne({ name: "Alice" })
+- Delete multiple documents:
+db.my_collection.deleteMany({ age: { $gt: 30 } })
+
+
+Indexing
+- Create an index:
+db.my_collection.createIndex({ name: 1 })
+- Show indexes:
+db.my_collection.getIndexes()
+
+
+Aggregation
+- Group and count documents:
+db.my_collection.aggregate([
+  { $group: { _id: "$age", count: { $sum: 1 } } }
+])
+
+
