@@ -1,0 +1,5 @@
+print("jegan")
+print("raj")
+print("raj\rkumar")
+print("raj23", end ="")
+print("jegan\rraj2")
