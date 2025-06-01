@@ -3,3 +3,6 @@ class CheckingAccount():
         self.minimum_balance=minimum_balance
         self.penalty=penalty
     
+    def add_penalty():
+        pass
+    

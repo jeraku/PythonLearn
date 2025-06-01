@@ -1,19 +1,20 @@
 from abc import ABC, abstractmethod
 import random
 class User(ABC):
-    def __init__(self, name, age,password,account_selection=1):
+    def __init__(self, name, age,password,account_selection=1,is_employee=False):
         self.name=name
         self.age=age
         self.password=password
         self.account_selection =account_selection
-        self.is_employee =False
+        self.is_employee = is_employee
         self.account_info=[]
-    
+        self.accountnun = self.generate_accno()
+
     @abstractmethod
     def min_balance():
         pass
 
-    def generate_accno():
+    def generate_accno(self):
         account_number = random.randint(100,10000)
         return account_number
     
@@ -40,6 +41,6 @@ class AccountHolder(User):
     def min_balance(self):
         return 1000
 
-if(__name__ =="__main__"):
-    employee = Employee(name="jegan", age =20, password="123456", account_selection=1)
-    print(employee.min_balance())
+# if(__name__ =="__main__"):
+#     employee = Employee(name="jegan", age =20, password="123456", account_selection=1)
+#     print(employee.min_balance())
