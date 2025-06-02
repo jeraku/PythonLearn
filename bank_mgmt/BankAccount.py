@@ -1,12 +1,11 @@
+from zoneinfo import available_timezones
 from User import Employee, AccountHolder
 
 class BankAccount():
-    def __init__(self, ):
-        # self,account_number, owner, balance
-        # self.account_number= account_number
-
+    def __init__(self):
+        self.balance=0
         self.members=[]
-    
+
     def add_member(self, name, age, password, account_selection, is_employee):
         print("add_member")
         if(is_employee):
@@ -29,7 +28,11 @@ class BankAccount():
         pass
 
     def deposit_money(account_info, deposit_amount):
+        
         pass
+
+    def get_balance(self):
+        return self.balance
 
     def withdraw():
         pass

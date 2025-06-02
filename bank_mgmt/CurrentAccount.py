@@ -1,7 +1,7 @@
-class SavingsAccount:
-    def __init__(self, balance):
+from bank_mgmt import BankAccount
+class CurrentAccount(BankAccount):
+    def __init__(self):
         self.interest_rate = 2
-        self.balance = balance
 
     def apply_interest(self):
         interest_amount = (self.interest_rate/100) + self.balance
