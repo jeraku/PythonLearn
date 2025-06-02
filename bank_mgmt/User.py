@@ -8,7 +8,7 @@ class User(ABC):
         self.account_selection =account_selection
         self.is_employee = is_employee
         self.account_info=[]
-        self.accountnun = self.generate_accno()
+        self.accountnum = self.generate_accno()
 
     @abstractmethod
     def min_balance():

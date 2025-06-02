@@ -30,7 +30,11 @@ while True:
     elif choice== "3":
         account_info = input("Enter your username/account id:")
         deposit_amount=500
-        bank_account.deposit_money(account_info, deposit_amount)
+        if(account_info.isdigit()):
+            account_info=100
+        else:
+            acc_info=account_info
+        bank_account.deposit_money(acc_info, deposit_amount)
 
 
     elif choice == '7':
