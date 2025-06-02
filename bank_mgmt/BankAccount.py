@@ -52,7 +52,7 @@ class BankAccount():
 if(__name__=="__main__"):
     bankacc = BankAccount()
     add_mem =  bankacc.add_member("jegan",40, 123456, True, True)
-    # add_mem =  bankacc.add_member("rAJ",41, 123456, True, True)
+    add_mem =  bankacc.add_member("rAJ",41, 123456, True, True)
     bankacc.list_member()
-    # bankacc.list_member()
-    # bankacc.deposit_money(1234,500)
+    bankacc.list_member()
+    bankacc.deposit_money(1234,500)
