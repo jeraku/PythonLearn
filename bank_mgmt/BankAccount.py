@@ -1,9 +1,11 @@
 from User import Employee, AccountHolder
+from SavingsAccount import SavingsAccount
 
 class BankAccount():
     def __init__(self):
         self.balance=0
         self.members=[]
+
 
     def add_member(self, name, age, password, account_selection, is_employee):
         print("add_member")
@@ -37,8 +39,9 @@ class BankAccount():
             print("=============================")
             print(member.__dict__)
             if member.accountnum == account_number:
-                member.balance += deposit_amount
-                print(f"Deposited {deposit_amount} to {member.name}'s account. New balance: {member.balance}")
+                self.balance += deposit_amount
+                # SavingsAccount().deposit(1000)
+                print(f"Deposited {deposit_amount} to {member.name}'s account. New balance: {self.balance}")
                 return
             print("Account not found.")
 
