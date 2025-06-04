@@ -1,17 +1,21 @@
-from BankAccount import BankAccount
-class SavingsAccount(BankAccount):
-    # def __init__(self):
-    #     self.interest_rate = 10
-    #     # self.balance = balance
+class SavingsAccount:
+    def __init__(self):
+        self.interest_rate = 10
+        self.balance = 0
+
+    def deposit(self, amount):
+        self.balance += amount
 
     def apply_interest(self):
-        interest_amount = (self.interest_rate/100) + self.balance
-        return interest_amount
+        self.balance += self.balance * (self.interest_rate / 100)
+        return self.balance
         
     def available_balance(self):
         return self.balance
 
-if(__name__=="__main__"):
-  a=  SavingsAccount()
-  a.available_balance()
-  print(a.available_balance())
+if __name__ == "__main__":
+    a = SavingsAccount()
+    a.deposit(1000) 
+    print(a.available_balance()) 
+    print(a.apply_interest())    
+    print(a.apply_interest())    
