@@ -28,13 +28,13 @@ while True:
     elif choice== "2":
         bank_account.list_member()
     elif choice== "3":
-        account_info = input("Enter your username/account id:")
-        deposit_amount=500
-        # if(account_info.isdigit()):
-        #     account_info=100
-        # else:
-        acc_info=account_info
-        bank_account.deposit_money(acc_info, deposit_amount)
+        account_info = input("Enter your account id:")
+        deposit_amount = input("Enter the amount to deposit:")
+        # deposit_amount=500
+        if(account_info.isdigit()):
+            account_info=100
+        else:
+            bank_account.deposit_money(account_info, deposit_amount)
 
 
     elif choice == '7':

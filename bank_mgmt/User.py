@@ -9,6 +9,7 @@ class User(ABC):
         self.is_employee = is_employee
         self.account_info=[]
         self.accountnum = self.generate_accno()
+        
 
     @abstractmethod
     def min_balance():
@@ -34,10 +35,16 @@ class User(ABC):
             return("CURRRENT")
 
 class Employee(User):
+    def __init__(self, name, age, password, account_selection=1, is_employee=True):
+        super().__init__(name, age, password, account_selection, is_employee)
+        self.balance = self.min_balance()
     def min_balance(self):
         return 0
 
 class AccountHolder(User):
+    def __init__(self, name, age, password, account_selection=1, is_employee=False):
+        super().__init__(name, age, password, account_selection, is_employee)
+        self.balance = self.min_balance()
     def min_balance(self):
         return 1000
 

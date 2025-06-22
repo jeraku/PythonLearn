@@ -3,7 +3,7 @@ from SavingsAccount import SavingsAccount
 
 class BankAccount():
     def __init__(self):
-        self.balance=0
+        # self.balance=0
         self.members=[]
 
 
@@ -11,12 +11,11 @@ class BankAccount():
         print("add_member")
         if(is_employee):
             employee= Employee(name, age, password, account_selection, is_employee)
-            self.balance = employee.min_balance()
             self.members.append(employee)
         else:
             print(f"account holder is not an employee {is_employee}")
             account_holder= AccountHolder(name, age, password, account_selection, is_employee)
-            self.balance = account_holder.min_balance()
+            # self.balance = account_holder.min_balance()
             self.members.append(account_holder)
             
 
@@ -39,17 +38,21 @@ class BankAccount():
             print("=============================")
             print(member.__dict__)
             if member.accountnum == account_number:
-                self.balance += deposit_amount
-                # SavingsAccount().deposit(1000)
-                print(f"Deposited {deposit_amount} to {member.name}'s account. New balance: {self.balance}")
+                member.balance += deposit_amount
+                print(f"Deposited {deposit_amount} to {member.name}'s account. New balance: {member.balance}")
                 return
             print("Account not found.")
-
+   
     def get_balance(self):
         return self.balance
 
-    def withdraw():
-        pass
+    def withdraw(self, account_number, withdraw_amount):
+        for member in self.members:
+            if member.accountnum == account_number:
+                print("---------------------------")
+                member.balance -= withdraw_amount
+                print(f"new balance is {member.balance}")
+                print(member.__dict__)
 
 if(__name__=="__main__"):
     bankacc = BankAccount()
@@ -58,3 +61,6 @@ if(__name__=="__main__"):
     bankacc.list_member()
     bankacc.list_member()
     bankacc.deposit_money(1234,500)
+    bankacc.deposit_money(1234,500)
+    bankacc.withdraw(1234,10)
+    bankacc.withdraw(1234,30)
