@@ -11,3 +11,10 @@ pip install "fastapi[standard]"
 
 for executing the fastapi
 fastapi dev main.py --port 8001
+
+pydantic model 
+>> used for validation purpose
+>> JSON validation
+
+JSON to object is deserialise
+Object to JSON is serialise

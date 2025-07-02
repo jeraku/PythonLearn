@@ -19,7 +19,8 @@ def read_item(item_id: int, name: Union[str] = None):
 
 # Query parameter example http://localhost:8001/items1/123?q="jegan"
 @app.get("/items1/{item_id}")
-def read_item(item_id: int, q: Union[str,None] = None):
+def read_item(item_id: int, q: Union[str,None] = None, age: int=None):
     # raise Exception("some error")
     response =  item_value(item_id, q)
+    response["age"] = age
     return response
