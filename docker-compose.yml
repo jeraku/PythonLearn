@@ -1,47 +1,17 @@
 services:
-  # mongodb:
-  #   image: mongo:latest
-  #   container_name: mongodb
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #     - mongodb_data:/data/db
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: admin
-  #     MONGO_INITDB_ROOT_PASSWORD: admin
-  #   healthcheck:
-  #     test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-
-  redis:
-    image: redis
-    container_name: redis
-    ports:
-      - 6379:6379
-    volumes: 
-      - redis_data:/data
-    command: ["redis-server", "--appendonly", "yes"]
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-
   postgres:
     image: postgres:13
-    container_name: postgres
-    ports:
-      - "5432:5432" 
+    hostname: postgres
+    container_name: postgres_c
     user: postgres
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: mydatabase #docker exec -it postgres psql -U admin -d mydatabase
-
+    ports:
+      - "5432:5432" 
     volumes:
-      - postgres_data:/data
+      - postgres_dat:/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "admin"]
       interval: 30s
@@ -58,11 +28,10 @@ services:
       - "8081:80"
     depends_on:
       - postgres
+    volumes:
+      - myLocal:/data
 
 volumes:
-  # mongodb_data:
-  #   driver: local
-  redis_data:
+  postgres_dat:
     driver: local
-  postgres_data:
-    driver: local
+  myLocal: 

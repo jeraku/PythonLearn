@@ -1,0 +1,27 @@
+docker inspect <container> -> retireve IPAddress and use it in PGAdmin to connect it as a local host.
+
+
+docker cp <./dvdrental.tar> <containername>:/data/dvdrental.tar
+
+pg_restore -U admin -d dvdrental dvdrental.tar
+    pg_dump -U your_username -d your_database -F c -f /path/to/backup/your_database.backup
+
+backup all dB info
+    pg_dumpall -U your_username > all_databases.sql
+
+compress
+    pg_dump -U postgres -d mydb | gzip > mydb.sql.gz
+
+- For plain SQL:
+    psql -U postgres -d mydb < mydb.sql
+- For custom format:
+    pg_restore -U postgres -d mydb /path/to/your_database.backup
+    pg_dumpall -U admin | gzip > backupdb.sql.gz
+
+
+docker exec -u <postgres your_container_name> pg_dumpall -U admin > /tmp/data.sql
+docker cp <container_id_or_name>:/path/in/container/data.sql "C:\Users\YourName\Backups\data.sql"
+docker cp 9c3326a322a8:/tmp/data.sql "C:\jegan\automation\github_J\PythonLearn\backup"
+
+pg_dumpall -U admin | gzip > backupdb.sql.gz
+

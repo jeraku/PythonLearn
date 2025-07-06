@@ -1,0 +1,22 @@
+\dt -> list the tables
+\d -> list of relationship
+\du -> list of roles
+\l -> list the databases 
+\? -> for help
+
+select title from film;
+select title as t , rental_rate as r from film limit 5;
+select title as t, rental_rate R from film order by title desc limit 5 ;
+select title as t, rental_rate R from film order by rental_rate desc, title asc;
+select first_name, last_name from actor order by last_name, first_name;
+select distinct rental_rate from film;
+select title,length from film LIMIT 5;
+select customer_id,active from customer where active=1;
+select customer_id, rental_date from rental group by Customer_id, rental_date;
+select customer_id, rental_date, ROW_NUMBER() OVER (ORDER BY customer_id) from rental;
+select customer_id, rental_date, ROW_NUMBER() OVER (ORDER BY customer_id) as rank from rental;
+select * from (select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY customer_id) as rank from rental) as data where rank=1;
+
+select * from customer_id, rental_date order by customer_id, rental_date;
+select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY rental_date) as rank from rental;
+select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY customer_id) as rank from rental;
