@@ -20,3 +20,10 @@ select * from (select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY 
 select * from customer_id, rental_date order by customer_id, rental_date;
 select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY rental_date) as rank from rental;
 select customer_id, rental_date, ROW_NUMBER() OVER (PARTITION BY customer_id) as rank from rental;
+
+
+create SEQUENCE roll_id_seq START 100 INCREMENT 1;
+create TABLE test_seq (id TEXT PRIMARY KEY DEFAULT 'TEST123' || nextval('roll_id_seq'), name TEXT);
+insert into test_seq  values ('jegan'); // fow name is not define which will throw error.
+
+insert into test_seq(name) values ('jegan');
