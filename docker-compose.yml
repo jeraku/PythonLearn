@@ -64,8 +64,8 @@ services:
 volumes:
   # mongodb_data:
   #   driver: local
-  # redis_data:
-  #   driver: local
+  redis_data:
+    driver: local
   postgres_dat:
     driver: local
   myLocal:
