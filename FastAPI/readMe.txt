@@ -6,7 +6,6 @@ Idempotence - Object will never change. Ex: GET value never change.
 OPTIONS - Post/Delete cross Origin > comm between two different server
 
 
-
 pip install "fastapi[standard]"
 
 for executing the fastapi

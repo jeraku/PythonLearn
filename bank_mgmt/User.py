@@ -48,6 +48,6 @@ class AccountHolder(User):
     def min_balance(self):
         return 1000
 
-# if(__name__ =="__main__"):
-#     employee = Employee(name="jegan", age =20, password="123456", account_selection=1)
-#     print(employee.min_balance())
+if(__name__ =="__main__"):
+    employee = Employee(name="jegan", age =20, password="123456", account_selection=1)
+    print(employee.min_balance())

@@ -1,0 +1,10 @@
+command to run 
+fastapi dev app/main.py
+
+download the SQL file
+import the SQL file in postgres
+
+bank management la balance movement.
+
+backup data retrieval in docker
+uvicorn vs async
