@@ -27,7 +27,7 @@ def save_task(taskList):
         task_file.write(content)
     task_file.close()
 
-    def load_task(taskList):
+def load_task(taskList):
     print("-------------load_task-------------------")
     task_file = open(fileName, "r")
     tasks = task_file.readlines()
