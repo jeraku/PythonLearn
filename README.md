@@ -32,7 +32,7 @@ Note: I tried in command shell and worked.
 Step 3: DB information (Plan via docker steup)
 data store from DB - How to achieve step by step.
 >> docker ps
-Create docker-compose.yaml file
+precondition: Create docker-compose.yaml file and docker volumes to be created
 >> docker-compose up -d
 >> http://localhost:8081/login
 Login with jegan@admin.com and admin
