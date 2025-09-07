@@ -11,4 +11,4 @@ docker exec -t postgres_c pg_dumpall -c -U admin > $backupFile
 Compress-Archive -Path $backupFile -DestinationPath $zipFile
 
 # Optional: Delete the original .sql file after zipping
-# Remove-Item $backupFile
+Remove-Item $backupFile
