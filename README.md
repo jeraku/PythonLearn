@@ -33,7 +33,9 @@ Step 3: DB information (Plan via docker steup)
 data store from DB - How to achieve step by step.
 >> docker ps
 Create docker-compose.yaml file
-
+>> docker-compose up -d
+>> http://localhost:8081/login
+Login with jegan@admin.com and admin
 
 Step 4: 
 >> pip install fastapi uvicorn pydantic psycopg2-binary redis
