@@ -25,6 +25,10 @@ To confirm venv step up is fine.
 >> pip install pandas
 >> pip freeze > requirements.txt
 
+for cleanup unused packages.
+>> pip install pipreqs
+>> pipreqs /path/to/your/project
+
 >> pip install -r requirement.txt ------ for installing from the requirements.txt file
 >> deactivate ----------- command for deactivation
 Note: I tried in command shell and worked.

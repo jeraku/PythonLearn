@@ -13,3 +13,5 @@ VALUES
   ('charlie', 'charlie@example.com', 'charliepass');
 
 select * from users;
+
+CREATE DATABASE school;
