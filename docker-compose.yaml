@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:16
+    restart: always
     hostname: postgres
     container_name: postgres_c
     user: postgres
@@ -20,6 +21,7 @@ services:
   
   pgadmin:
     image: dpage/pgadmin4:9.8
+    restart: always
     container_name: pgadmin_container
     environment:
       PGADMIN_DEFAULT_EMAIL: jegan@admin.com

@@ -50,16 +50,18 @@ To check for the mount values.**
 docker inspect postgres
 - Look for "Mounts" → "Source": "C:\\jegan\\automation\\myLocal\\local"
 
-<!-------------------------------------->
+<!------------------working one-------------------->
 For backup in your local
 docker exec -t postgres_c pg_dumpall -c -U admin > backup_today.sql
 
 restore the backup:
 cat backup_today.sql | docker exec -i postgres_c psql -U admin -d mydatabase
 
-alternate option
-docker exec postgres_c bash -c \
-"pg_dumpall -c -U admin | gzip > /tmp/backup.sql.gz"
+<!------------------alternate option in zip format-------------------->
+
+PS C:\jegan\automation\github_J\PythonLearn\backup> .\backup_shell_program.ps1
+PS C:\jegan\automation\github_J\PythonLearn\backup>
+
 <!-------------------------------------->
 
 Step 4: 
