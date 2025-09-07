@@ -4,12 +4,12 @@ https://github.com/jeraku/PythonLearn/tree/myfirstproject
 
 
 Plan:
-Frontend: Django flask
-backed API: Fast API
-DB: Postgres DB
 packaging: Venv
-cache mechanism: redis cache
-pydantic model
+DB: Postgres DB
+<!-- Frontend: Django flask -->
+backed API: Fast API
+<!-- cache mechanism: redis cache
+pydantic model -->
 
 Step1 : 
 check for test.py worked properly once the initial setup is completed.
@@ -17,7 +17,7 @@ check for test.py worked properly once the initial setup is completed.
 Step 2: 
 Venv setpup for packaging
 go to the project path. 
->> 
+
 >> python -m venv venv
 >> ./venv/Scripts/activate   --------- command for activation
 
@@ -35,7 +35,8 @@ data store from DB - How to achieve step by step.
 precondition: Create docker-compose.yaml file and docker volumes to be created
 >> docker-compose up -d
 >> http://localhost:8081/login
-Login with jegan@admin.com and admin
+Login with jegan@admin.com and admin and register with the below connection
+![alt text](image.png)
 
 Step 4: 
 >> pip install fastapi uvicorn pydantic psycopg2-binary redis

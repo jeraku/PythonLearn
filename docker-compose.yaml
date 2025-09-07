@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: mydatabase #docker exec -it postgres psql -U admin -d mydatabase
+      POSTGRES_DB: mydatabase #docker exec -it postgres_c psql -U admin -d mydatabase commands are \dt \du \l
     ports:
-      - "5432:5432" 
+      - "5432:5432"
     volumes:
       - postgres_dat:/data
     healthcheck:
@@ -19,7 +19,7 @@ services:
       retries: 5
   
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:9.8
     container_name: pgadmin_container
     environment:
       PGADMIN_DEFAULT_EMAIL: jegan@admin.com
