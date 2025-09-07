@@ -33,10 +33,34 @@ Step 3: DB information (Plan via docker steup)
 data store from DB - How to achieve step by step.
 >> docker ps
 precondition: Create docker-compose.yaml file and docker volumes to be created
->> docker-compose up -d
+>> docker-compose up -d  --------- docker compose down
 >> http://localhost:8081/login
 Login with jegan@admin.com and admin and register with the below connection
 ![alt text](image.png)
+
+DB validation:
+>> docker exec it <containername> sh
+>> psql -U admin -d mydatabase
+>> \dt \l \du
+
+<!-- to check mount values - to be checked -->
+**
+To check for the mount values.**
+- Verify the bind mount in your container
+docker inspect postgres
+- Look for "Mounts" → "Source": "C:\\jegan\\automation\\myLocal\\local"
+
+<!-------------------------------------->
+For backup in your local
+docker exec -t postgres_c pg_dumpall -c -U admin > backup_today.sql
+
+restore the backup:
+cat backup_today.sql | docker exec -i postgres_c psql -U admin -d mydatabase
+
+alternate option
+docker exec postgres_c bash -c \
+"pg_dumpall -c -U admin | gzip > /tmp/backup.sql.gz"
+<!-------------------------------------->
 
 Step 4: 
 >> pip install fastapi uvicorn pydantic psycopg2-binary redis
