@@ -1,0 +1,16 @@
+# Makefile for Python project automation
+PATH = src/main
+.PHONY: install test clean run
+
+install:
+	pip install -r requirements.txt
+
+test:
+	pytest tests/
+
+clean:
+	find . -type f -name "*.pyc" -delete
+	rm -rf __pycache__/
+
+run:
+	python $(PATH)/main.py
