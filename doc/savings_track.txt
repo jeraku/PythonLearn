@@ -1,0 +1,14 @@
+savings_id | AccHolderName |  BankName  | Amount| return_percentage | expiry_date | created_date |  status | country | 
+
+Savings	monthly	%
+Subathra lloyds 	500	5.25
+jegan lloyds	500	5.25
+
+addSavings - Done
+UpdateSavings
+ListSavings - Done
+ListBank
+ListExpiredSavings
+DeleteSavings
+UpdateAmount
+UpdatePercentage

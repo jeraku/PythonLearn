@@ -20,6 +20,7 @@ go to the project path.
 
 >> python -m venv venv
 >> ./venv/Scripts/activate   --------- command for activation
+>> source ./venv/Scripts/activate   --------- command for activation in git bash
 
 To confirm venv step up is fine.
 >> pip install pandas
