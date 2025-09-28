@@ -1,0 +1,6 @@
+words = ["level", "world", "madam", "python", "racecar"]
+ret_val = []
+for word in words:
+    if(word==word[::-1]):
+        ret_val.append((word, word[::-1]))
+print(ret_val)
