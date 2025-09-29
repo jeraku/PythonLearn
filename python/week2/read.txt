@@ -1,0 +1,18 @@
+python is dynamically type.
+object oriented LANGUAGES
+interpreter LANGUAGES
+
+Data type
+integer
+float 
+string
+boolean
+list 
+tuple
+dictionary
+set
+
+list -> order & mutable
+tuple -> ordered & immutable
+set  -> unordered & immutable 
+dictionary > unordered & mutable -> key value 
