@@ -1,4 +1,8 @@
-'''set is unordere and Mutable
+'''set is unordered and Mutable
+
+- The set itself is mutable: we can add or remove elements.
+- The elements inside (int, float, str, tuple) are immutable types.
+
 avoid duplication
 '''
 items = {"apple","kiwi", "apple", "banana", "oragne", "grapde"} # employee details to maintain unique data
@@ -23,7 +27,13 @@ while len(items) > count:
     print(items) 
     count = count+1
 
+my_list = ['apple', 'banana', 'cherry', 'apple']
+my_set = set()
 
+for item in my_list:
+    my_set.add(item)
+
+print(my_set)
 
 
 

@@ -1,7 +1,5 @@
 # List = order and mutable
 
-from pkgutil import iter_modules
-
 
 fruits = ["banana", 100, False]
 print(fruits[1])

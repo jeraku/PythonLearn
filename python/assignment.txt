@@ -1,6 +1,16 @@
-words = ["level", "world", "madam", "python", "racecar"]
-ret_val = []
-for word in words:
-    if(word==word[::-1]):
-        ret_val.append((word, word[::-1]))
-print(ret_val)
+scores = {"Alice": 85, "Bob": 67, "Charlie": 92, "Diana": 67, "Ethan": 75}
+list_val=[]
+for v in scores.values():
+    list_val.append(v)
+list_val.sort(reverse=True)
+print(f"score: {list_val}")
+hscore=""
+lscore =[]
+lenvalue=len(list_val)-1
+for k,v in scores.items():
+    if(v==list_val[0]):
+        hscore=k
+    if(v==list_val[lenvalue]):
+        lscore.append(k)
+print(f"Top scorer(s): {hscore} with  {list_val[0]}")
+print(f"Lowest scorer(s): {lscore} with {list_val[lenvalue]}")
