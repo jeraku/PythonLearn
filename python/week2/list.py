@@ -30,3 +30,25 @@ item1= ["jest", "jeset"]
 print(item+item1)
 item3= item.extend(item1)
 print(item3)
+print("22222222222222222222")
+a= [3,34,5,5,53,23,32,45]
+b= ["jadan","raj"]
+print(a)
+print(a.extend(b))
+print(a)
+print(a.append(b))
+print(a)
+print(a.reverse())
+a= [3,34,5,5,53,23,32,45]
+a.sort(reverse = True)
+print(a)
+a= [3,34,5,5,53,23,32,45]
+sorted(a)
+print(a)
+print(a.count(5))
+print(a.index(23))
+print(a.index(5))
+print(a.index(5))
+print(min(a))
+print(max(a))
+# help(list)
