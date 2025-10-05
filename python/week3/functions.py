@@ -40,5 +40,8 @@ def add(*args):
 total= add(10,30,405)
 print(total)
 
-x=10
-# lamda x : x * x
+
+x = 11
+square = lambda x: x * x
+result = square(x)
+print(result)  # Output: 100
