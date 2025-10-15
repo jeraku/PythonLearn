@@ -13,7 +13,7 @@ words = "Python is fun and Learning python is great"
 ret_set = set()
 words = words.lower()
 ret_set = words.split(" ")
-print("split words")
+print(f"split words {ret_set}")
 output = ((set(ret_set)))
 print(output)
 print(f"Unique word count is: {len(output)}")

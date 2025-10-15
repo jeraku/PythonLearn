@@ -16,3 +16,9 @@ list -> order & mutable
 tuple -> ordered & immutable
 set  -> unordered & immutable 
 dictionary > unordered & mutable -> key value 
+
+
+| Mutable | immutable   | 
+| List    | Tuple       |
+| set     | FrozenSet   |
+| values  | keys        | -> dictionary

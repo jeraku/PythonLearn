@@ -1,0 +1,1 @@
+from .magicfuncion import greet

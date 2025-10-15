@@ -1,16 +1,33 @@
-scores = {"Alice": 85, "Bob": 67, "Charlie": 92, "Diana": 67, "Ethan": 75}
-list_val=[]
-for v in scores.values():
-    list_val.append(v)
-list_val.sort(reverse=True)
-print(f"score: {list_val}")
-hscore=""
-lscore =[]
-lenvalue=len(list_val)-1
-for k,v in scores.items():
-    if(v==list_val[0]):
-        hscore=k
-    if(v==list_val[lenvalue]):
-        lscore.append(k)
-print(f"Top scorer(s): {hscore} with  {list_val[0]}")
-print(f"Lowest scorer(s): {lscore} with {list_val[lenvalue]}")
+
+name1 = input("Enter the Item1 Name: ")
+price1 = float(input("Enter the price of item 1: "))
+
+name2 = input("Enter the Item2 Name: ")
+price2 = float(input("Enter the price of item 2: "))
+
+name3 = input("Enter the Item3 Name: ")
+price3 = float(input("Enter the price of item 3: "))
+
+subtotal = price1+ price2 + price3
+tax_percentage_val = subtotal * (10/100)
+Total = subtotal + tax_percentage_val
+
+# print(f"total is {Total}")
+# print(f"tax_percentage_val is {tax_percentage_val}")
+# print(f"subtotal is {subtotal}")
+
+a= len(name1)
+b= len(name2)
+c= len(name3)
+val =  c if c >(a if(a>b) else b) else (a if(a>b) else b)
+print(val)
+print("=======================================================")
+print(f"-    ItemName {" "*(val-len("ItemName"))}             Price")
+print(f"-    {name1}  {" "*(val-a)}             {price1}")
+print(f"-    {name2}  {" "*(val-b)}             {price2}")
+print(f"-    {name3}  {" "*(val-c)}             {price3}")
+print("------------------------------------------------------")
+print(f"-    subtotal  {" "*(val-len("subtotal"))}             {subtotal}")
+print(f"-    Tax      {" "*(val-len("Tax"))}             {tax_percentage_val}")
+print(f"-    Total     {" "*(val-len("total"))}             {Total}")
+print("=======================================================")

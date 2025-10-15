@@ -4,10 +4,34 @@ Your program should: Ask the user to enter the name and price of 3 items.
  showing each item with its price, subtotal, tax, and total.'''
 
 name1 = input("Enter the Item1 Name: ")
-price1 = input("Enter the price of item 1: ")
+price1 = float(input("Enter the price of item 1: "))
 
 name2 = input("Enter the Item2 Name: ")
-price2 = input("Enter the price of item 2: ")
+price2 = float(input("Enter the price of item 2: "))
 
 name3 = input("Enter the Item3 Name: ")
-price3 = input("Enter the price of item 3: ")
+price3 = float(input("Enter the price of item 3: "))
+
+subtotal = price1+ price2 + price3
+tax_percentage_val = subtotal * (10/100)
+Total = subtotal + tax_percentage_val
+
+# print(f"total is {Total}")
+# print(f"tax_percentage_val is {tax_percentage_val}")
+# print(f"subtotal is {subtotal}")
+
+a= len(name1)
+b= len(name2)
+c= len(name3)
+val =  c if c >(a if(a>b) else b) else (a if(a>b) else b)
+print(val)
+print("=======================================================")
+print(f"-    ItemName {" "*(val-len("ItemName"))}             Price")
+print(f"-    {name1}  {" "*(val-a)}             {price1}")
+print(f"-    {name2}  {" "*(val-b)}             {price2}")
+print(f"-    {name3}  {" "*(val-c)}             {price3}")
+print("------------------------------------------------------")
+print(f"-    subtotal  {" "*(val-len("subtotal"))}             {subtotal}")
+print(f"-    Tax      {" "*(val-len("Tax"))}             {tax_percentage_val}")
+print(f"-    Total     {" "*(val-len("total"))}             {Total}")
+print("=======================================================")

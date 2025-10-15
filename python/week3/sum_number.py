@@ -7,15 +7,23 @@ def sum(n):
         sum += num
     return sum
 
-print(sum(10))
+# print(sum(10))
 # print(sum(1000000000000000000000)) # time complexity this will not work, time consuming
 
+def sum1(n):
+    first = 1
+    last = int(n/2)+1
+    sum = n
+    l=0
+    for i in range(first, last):
+        l+=sum+i
+        sum= n-i    
+    return l
+print(sum1(10))
 
-
-def sum(n):
-    return n*(n+1)/2
-
-print(sum(1000000000000000000000)) # time complexity this will work
+# def sum(n):
+#     return n*(n+1)/2
+print(sum1(100000000)) # time complexity this will work
 
 
 
