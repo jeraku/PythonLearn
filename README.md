@@ -4,12 +4,12 @@ https://github.com/jeraku/PythonLearn/tree/myfirstproject
 
 
 Plan:
-packaging: Venv
+Packaging: Venv
 DB: Postgres DB
-<!-- Frontend: Django flask -->
-backed API: Fast API
-<!-- cache mechanism: redis cache
-pydantic model -->
+Frontend: Django flask
+Backend API: Fast API
+Cache mechanism: redis cache
+Pydantic model -->
 
 Step1 : 
 check for test.py worked properly once the initial setup is completed.
@@ -64,8 +64,8 @@ cat backup_today.sql | docker exec -i postgres_c psql -U admin -d mydatabase
 
 <!------------------alternate option in zip format-------------------->
 
-PS C:\jegan\automation\github_J\PythonLearn\backup> .\backup_shell_program.ps1
-PS C:\jegan\automation\github_J\PythonLearn\backup>
+PS C:\jegan\automation\github_J\PythonLearn\test\backup> .\backup_shell_program.ps1
+PS C:\jegan\automation\github_J\PythonLearn\test\backup>
 
 <!-------------------------------------->
 
