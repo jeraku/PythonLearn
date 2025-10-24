@@ -1,33 +1,26 @@
+def simple(nums,target):
+    for index in range(len(nums)):
+        if nums[index] == target:
+            return index
+    return -1
+nums = [10,30,40,50,60,70,80,90,100,101,123,350,456,567, 780]
+target = 40
+# print(simple(nums, target))
 
-name1 = input("Enter the Item1 Name: ")
-price1 = float(input("Enter the price of item 1: "))
 
-name2 = input("Enter the Item2 Name: ")
-price2 = float(input("Enter the price of item 2: "))
-
-name3 = input("Enter the Item3 Name: ")
-price3 = float(input("Enter the price of item 3: "))
-
-subtotal = price1+ price2 + price3
-tax_percentage_val = subtotal * (10/100)
-Total = subtotal + tax_percentage_val
-
-# print(f"total is {Total}")
-# print(f"tax_percentage_val is {tax_percentage_val}")
-# print(f"subtotal is {subtotal}")
-
-a= len(name1)
-b= len(name2)
-c= len(name3)
-val =  c if c >(a if(a>b) else b) else (a if(a>b) else b)
-print(val)
-print("=======================================================")
-print(f"-    ItemName {" "*(val-len("ItemName"))}             Price")
-print(f"-    {name1}  {" "*(val-a)}             {price1}")
-print(f"-    {name2}  {" "*(val-b)}             {price2}")
-print(f"-    {name3}  {" "*(val-c)}             {price3}")
-print("------------------------------------------------------")
-print(f"-    subtotal  {" "*(val-len("subtotal"))}             {subtotal}")
-print(f"-    Tax      {" "*(val-len("Tax"))}             {tax_percentage_val}")
-print(f"-    Total     {" "*(val-len("total"))}             {Total}")
-print("=======================================================")
+def simple1(nums, target):
+    ll = spllit(nums)
+    if nums[ll]<target:
+        for i in range(ll):
+            ll=ll+i
+            if target == nums[ll]:
+                return ll
+    else:
+        for i in range(ll-1):
+            # print(i)
+            if target == nums[i]:
+                return i
+def spllit(nums):
+    length = int(len(nums)/2)
+    return  length
+print(simple1(nums, target))

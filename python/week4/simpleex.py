@@ -17,7 +17,7 @@ def simple1(nums, target):
                 return ll
     else:
         for i in range(ll-1):
-            print(i)
+            # print(i)
             if target == nums[i]:
                 return i
 def spllit(nums):
