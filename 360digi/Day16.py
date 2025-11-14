@@ -72,10 +72,11 @@ x4 = re.split("\d+", txt) #
 print(x4)
 # x5 = re.split("\d*", txt) #
 # print(x5)
-
+print("--------------")
 allname = "my name is jegan , what is your name"
 for i in re.finditer("name", allname):
-    loc = i.span()  # index locaiton will be printed
+    loc = i.span()  # index locaiton will be printed (3, 7)
     print(loc)
 
+#string with index
 print(allname[32])
