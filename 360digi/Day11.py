@@ -1,6 +1,21 @@
-from hmac import new
-from re import X
+""" 
+local variable
+global variable 
+recursive function
+List comprehension
+newlist = [i for i in range(0,12) if i%2==1]
 
+Dictionary comprehension
+ditcs_k = {k*2:v*2 for k,v in dicts.items()}
+
+Zip and unzip using Set 
+mappes = zip(name,age, mark)
+# unzipping example
+nms, ags, mrk = zip(*mappes)
+
+tuple  packing and unpacking 
+
+"""
 
 age =20 
 def local():

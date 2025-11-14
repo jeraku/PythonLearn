@@ -51,7 +51,7 @@ print(f"size of variable {sys.getsizeof(new_list)} bytes")
 
 print("------------------")
 
-iterable_value ="Machinee learning"
+iterable_value ="Machine learning"
 iterator = iter(iterable_value)
 
 while True:
@@ -98,7 +98,7 @@ def fib(limit):
 x= fib(100)
 print(x)
 
-# Iterating over the geneator using next option
+# Iterating over the generator using next option
 while True:
     try:
         print(next(x), end =" ")

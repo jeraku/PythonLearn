@@ -1,6 +1,12 @@
+"""
+default argument
+*args
+**Kwargs
+
 # finite loop is for loop
 # and infinite loop is while loop
 
+"""
 n=6
 k=n+1
 

@@ -7,8 +7,6 @@ List:
 '''
 
 ################List Creation############
-from os import popen
-
 
 fruits = ["apple", "banana", "cherry", "orange", "berry"]
             # 0          1        2         3   

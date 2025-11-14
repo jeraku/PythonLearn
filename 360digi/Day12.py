@@ -1,3 +1,19 @@
+""" 
+sorted
+collection libary to handle the missing key in dictionary
+
+lambda
+map
+print(list(map(lambda x: x*2, val)))
+
+filter
+# filter(function return true or false, iterable)
+print(list(filter(lambda x: x<20, list(range(0,30)))))
+
+reduce
+print(reduce(lambda x, y : x*y, val))
+
+"""
 animals = ["dog", "cat", "bear" , "sheep", "elephant"]
 
 print(sorted(animals))
@@ -40,6 +56,7 @@ print(b(10))
 # map function ex
 val= [1,2,4,5,5,6,7,7]
 print(list(map(lambda x: x*2, val)))
+
 print(list(map(str,val)))
 
 # filter function ex

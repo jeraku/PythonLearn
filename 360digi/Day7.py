@@ -1,5 +1,5 @@
 import math
-import operator
+# import operator
 
 x1 = 10
 y1 = 20

@@ -1,3 +1,9 @@
+"""
+enumerate 
+while loop
+functions
+
+"""
 snacks  = ["chips", "pizza","jam", "fruit", "kiwi"]
 
 for snack in snacks:
