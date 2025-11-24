@@ -13,3 +13,5 @@ class Student(MixinLogin, TimeStampex):
         self.student.append(self.student_name)
 
 studn = Student("hegan")
+print(studn.get_stud())
+studn.create("test")

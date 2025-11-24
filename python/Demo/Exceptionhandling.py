@@ -1,6 +1,9 @@
+class NegativevalueException(Exception):
+    pass
+
 try:
     f=open("hello.txt", "r")
-    num=10/0
+    num=-10/0
 except FileNotFoundError as e:
     print("error", e)
 except ZeroDivisionError:

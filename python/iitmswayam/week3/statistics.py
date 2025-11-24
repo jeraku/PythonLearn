@@ -66,7 +66,29 @@ Measuere of Location
 Shape of Data
     > Histogram
     > Probability Plot
+
+    
+
+Day 3 > statistics 
+    Measure of Association
+        > Covariance - is unbounded and also depends on the unit of data
+        > Correlation - Scatter plot - indicate the positive or negative impact. starts from -1.
+          -Positive correlation, negative correlation, no correlation
+
+          
+Metrics to be measured for all
+count
+minimum
+Q1
+Q2(median)
+Mean
+Q3
+Maximum
+standard deviation
+cardinality - no. of distinct values
+
       """
+
 
 
 

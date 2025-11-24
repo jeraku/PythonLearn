@@ -11,6 +11,6 @@ class Student:
         print("welcome", self.name, self.clas)
     
 stud = Student("year2")
-
+stud.welcome()
 stud.name= "jegan"
 stud.welcome()
