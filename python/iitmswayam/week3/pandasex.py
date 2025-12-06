@@ -11,7 +11,6 @@ os.chdir("c:/jegan") > to set working directory
     
     
 """
-from calendar import c
 import os  as os
 import pandas as pd
 import numpy as np
@@ -60,7 +59,7 @@ DataType
             64 in pandas is store the memory allocation is 64 bits, it allows computers to orgainise and efficiency
 
     character - string
-        > category (varoables taken on a limited, fixed number of possible value) and Object (for strings the length is not fixed)
+        > category (variables taken on a limited, fixed number of possible value) and Object (for strings the length is not fixed)
         
     dataframe.dtypes
     """
@@ -81,8 +80,8 @@ print(cars_data.info())
 
 # convert a datatype into an object
 cars_data["Horsepower"] = cars_data["Horsepower"].astype("object")
-print(cars_data["Horsepower"].nbytes)
-print(cars_data["Horsepower"].astype("category").nbytes)
+print(cars_data["Horsepower"].nbytes) #to check the size of the column values
+print(cars_data["Horsepower"].astype("category").nbytes) #size will get reduced.
 
 print(np.unique(cars_data["Horsepower"]))
 pd.set_option('future.no_silent_downcasting', True)
@@ -91,3 +90,4 @@ print(np.unique(cars_data["Horsepower"]))
 
 #To check the missing values in columns
 print(cars_data.isnull().sum())
+

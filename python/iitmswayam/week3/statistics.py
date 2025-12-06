@@ -79,9 +79,9 @@ Day 3 > statistics
 Metrics to be measured for all
 count
 minimum
-Q1
-Q2(median)
-Mean
+Q1 (25%)
+Q2(median) )(50%)
+Mean 
 Q3
 Maximum
 standard deviation
