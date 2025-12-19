@@ -42,4 +42,29 @@ print(X[["x1","x2"]])
 
 print(X.columns)
 print(X.iloc[0:3,1])
+print("-----------")
+# index location
+print(X.iloc[1:2,1:2])
+print("-----------")
+# location
 
+print(X.loc[0:2, ["x2", "x2"]]) #column name to be definded in location
+print("-----------")
+df1 = pd.DataFrame({"a1": [2,4,5,7], "a2": [7,5,4,3]})
+df2 = pd.DataFrame({"a1": [2,4,5,7], "a3": [71,51,14,13]})
+print(df1)
+print(df2)
+print("-----------")
+dfm = pd.merge(df1,df2) # same filed like a1 is required to do merge
+print(dfm)
+dfm = pd.merge(df1,df2,on="a1")
+
+print("-----------JOIN ==========")
+
+df1 = pd.DataFrame({"a1": [2,4,5,7], "a2": [7,5,4,3],}, index=[2000,2002,2004,2005])
+df2 = pd.DataFrame({"a4": [2,4,5,87], "a3": [71,51,14,13]},index=[2200,22302,2004,2005])
+
+print(df1)
+
+joined = df2.join(df1)
+print(joined)
