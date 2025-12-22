@@ -1,3 +1,4 @@
+from email.utils import decode_rfc2231
 import pandas as pd
 import numpy as np
 import os as os
@@ -68,3 +69,56 @@ print(df1)
 
 joined = df2.join(df1)
 print(joined)
+
+
+print("------Replace index name------")
+df1 = pd.DataFrame({"a1": [2,4,5,7], "a2": [7,5,4,3],})
+df2 = pd.DataFrame({"a4": [2,4,5,87], "a3": [71,51,14,13]})
+print(df1)
+df1.set_index("a1", inplace=True) # Assing index names as column name > we are assinging the index name as our own vlaue
+print(df1)
+
+print("-----------")
+print(df2)
+df2 = df2.rename(columns = {"a4": "a5"})
+print(df2)
+
+print("------concatenation-----")
+concate= pd.concat([df2,df1])
+print(concate)
+
+print("=======")
+print(df2)
+print(df2["a5"] >3)
+print("=======")
+df2["a6"]=["one", "two", "three", "foure"]
+print(df2)
+print("=======")
+df2.iat[1,2]="Six"
+print(df2)
+print("=======")
+print(df2.info())
+
+df2.a5[2], df2.a3[1]=None,None
+print(df2)
+
+print("=======")
+print(df2.isnull())
+print("=======")
+print(df2.isna())
+print("=======")
+print(df2.isna().sum())
+df3=df2
+print("=======")
+print(df3.dropna(inplace=False))
+print("=======")
+print(df3)
+print("=======")
+print(df3.dropna(inplace=True))
+print("=======")
+print(df3)
+
+
+print("-----------")
+
+# imputation = missing value to be replaced by some logical value
