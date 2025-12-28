@@ -27,4 +27,4 @@ print(val.describe()) #works only for numerical values
 print("-----------")
 print((val.head(2)))
 
-print(val.)
+# print(val.)
