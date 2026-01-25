@@ -44,9 +44,12 @@ Login with jegan@admin.com and admin and register with the below connection
 ![alt text](image.png)
 
 DB validation:
->> docker exec it <containername> sh
+>> docker exec -it <containername> sh
 >> psql -U admin -d mydatabase
 >> \dt \l \du
+
+docker exec -it postgres_c psql -U admin -d mydatabase
+docker exec -it postgres_c env | grep POSTGRES
 
 <!-- to check mount values - to be checked -->
 **
