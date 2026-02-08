@@ -1,7 +1,10 @@
 import requests
-
-
-# GROQ_API_KEY = "<grok key>"
+from dotenv import load_dotenv
+import os 
+load_dotenv()
+SECRET_KEY = os.getenv('GROQ_API_KEY')
+print(SECRET_KEY)
+GROQ_API_KEY = SECRET_KEY
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "openai/gpt-oss-120b"
 
@@ -9,7 +12,7 @@ MODEL = "openai/gpt-oss-120b"
 def call_groq(messages, temperature=0.5):
     """Core function to handle the HTTP request."""
     headers = {
-        # "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
     }
 
