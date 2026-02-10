@@ -90,15 +90,20 @@ class Ostrich1(Bird):
         print("Ostrich1 cannot Fly")
 
 obj_bird = Bird()
-obj_Sparrow = Sparrow()
+obj_Sparrow = Sparrow() 
 obj_Ostrich = Ostrich()
 obj_Ostrich1= Ostrich1()
 obj_bird.flight()
 obj_Sparrow.flight()
 obj_Ostrich.flight()
 obj_Ostrich1.flight() # This  is the method from main class 
-
-
+"""
+output for above lines >>>
+few birds cannnot fly
+Sparrow can fly 
+Ostrich cannot Fly
+few birds cannnot fly
+"""
 print("=============Multi Threading============")
 
 import time
@@ -112,7 +117,7 @@ def cal_cube(numbers):
     print("calculate cube number")
     for n in numbers:
         time.sleep(.1)
-        print("square: ", n*n*n)
+        print("cube number: ", n*n*n)
 
 ll = [2,3,4,5,5]
 
