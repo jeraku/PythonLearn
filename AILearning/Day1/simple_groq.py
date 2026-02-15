@@ -1,4 +1,4 @@
-TOKEN = "<>"
+TOKEN = "><"
 from groq import Groq
 import os
 
