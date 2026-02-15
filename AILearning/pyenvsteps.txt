@@ -1,0 +1,19 @@
+pip install poetry
+poetry init
+poetry add requests > this is for adding the apis
+poetry shell > this is for activating the poetry
+
+-----
+venv setup
+python -m venv venv
+./venv/Script/activate 
+deactivate
+
+pip install -r requirements.txt
+pip freeze > requirements.txt
+
+
+removing global packages 
+pip freeze > global.txt
+pip uninstall -r global.txt -y
+

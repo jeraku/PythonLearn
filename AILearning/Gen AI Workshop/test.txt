@@ -1,0 +1,98 @@
+Based on the workshop content, here are the main steps, tools, and techniques demonstrated:
+
+CORE PROMPTING TECHNIQUE:
+Magic Prompt Formula with 3 components:
+
+Role - Define what AI should act as (e.g., "You are an experienced email copywriter")
+Task - What you want AI to do
+Instructions - Additional context about audience, style, requirements
+TOOLS AND WORKFLOWS DEMONSTRATED:
+
+GetMulti (multi) - Compare responses from multiple AI models (ChatGPT, Claude, Gemini, DeepSeek, Llama, etc.) simultaneously
+
+Perplexity AI - Research tool that reads hundreds of articles and creates comprehensive reports. Use "Research" mode for deep analysis.
+
+Gemini Deep Research - Similar research capability, shows sources and thought process
+
+Grok (by Twitter/X) - Research viral tweets and trending content, especially good for finding new AI tools going viral
+
+Numerous AI - Chrome extension for Google Sheets that:
+
+Generates Excel formulas automatically
+Can analyze data within cells using =NAI() function
+No need to remember complex formulas
+Claude - Upload CSV/Excel files for data analysis. It writes Python code automatically and creates dashboards with visualizations
+
+Gemini Canvas - Create presentations from research. Can export to Google Slides with custom brand colors
+
+Emily (MLE) - Chrome extension that:
+
+Summarizes any webpage or article
+Watches YouTube videos and summarizes them
+Allows chatting with content in multiple languages
+Can answer questions about the content
+Notebook LM (by Google) - Learning tool that:
+
+Imports multiple sources (PDFs, websites, YouTube videos)
+Creates audio podcasts in 200+ languages
+Generates video overviews with slides
+Creates quizzes, flashcards, mind maps
+Allows joining the AI podcast to ask questions
+Fort AI - Product image generation:
+
+Upload Amazon URLs or product images
+Creates professional product ads automatically
+
+
+
+Generative AI Workshop - Detailed Summary
+Overview
+This was a comprehensive 2+ hour workshop on Generative AI conducted by Webhav Sasinti, founder of Growth School, teaching participants how to leverage AI tools effectively across various functions.
+
+Core Concepts Taught
+1. Prompt Engineering
+Magic Prompt Formula: Role + Task + Instructions + Context
+Example: Instead of "write an email," specify role (experienced email copywriter), task (write launch email), instructions (make it fun, target 25+ audience, use brand colors)
+Result: 10x better outputs compared to basic prompts
+Chain Prompting: Breaking complex tasks into sequential prompts for better results
+2. Multi-Model AI Usage
+Tool: GetMulti (multi.ai)
+Allows querying multiple AI models simultaneously (ChatGPT, Claude, Gemini, DeepSeek, Llama, etc.)
+Benefits: Compare outputs, choose best response, don't rely on single AI
+Helpful for: Getting diverse perspectives and optimal answers
+Tools and Applications
+Research Tools
+1. Perplexity AI
+
+Deep research capability that reads hundreds of articles
+Creates comprehensive market research reports with graphs and charts
+Use case: Market analysis, competitive research, industry insights
+Benefits: Saves hours of manual research, provides cited sources
+2. Gemini Deep Research
+
+Similar to Perplexity, creates detailed reports
+Shows sources and thought process
+Exports to Google Slides for presentations
+3. Grok (by Twitter/X)
+
+Specializes in reading and analyzing tweets
+Finds viral AI tools and trending topics
+Benefits: Stay updated on latest tools and trends
+Productivity Tools
+1. Numerous AI (Chrome Extension)
+
+Makes Excel/Google Sheets AI-powered
+Generates formulas automatically without coding knowledge
+Can analyze data using natural language prompts (=NAI function)
+Use case: Sentiment analysis, data categorization, complex formulas
+Benefits: Eliminates need to remember complex Excel formulas
+2. Claude AI
+
+Excellent for data analysis and coding
+Upload CSV/Excel files
+
+
+
+
+
+

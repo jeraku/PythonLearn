@@ -14,7 +14,6 @@ Stage 1:
 Stage 2:
     Fine tuning -> every week - > label the data -> obtain assitant model -> cheaper ->  
 Stage 3: 
-
     Optional -> Comparison labels -> Finetuning -> RLHF Reinforcement learning from human feedback.
 
 which Model is good: 
@@ -26,7 +25,7 @@ https://arena.ai/leaderboard/text
 SAFETY ISSUE
 >> Jail break - acting like a polished person and get info from the AI . 
  eX: encoded value will iddisplay the results.
-    Image - backside content we an inject the details to AI.
+    Image - backside content we can inject the details to AI.
 
 Prompt injection attack
 >> send blank image and ask what do this say - AI will check and repsond something.
@@ -76,7 +75,7 @@ open models. -> modelweight (.bin file/safetensor file) -> selfhost
 LLM OS
 AGENTS
 RAG -> Real time data -> External memory -> Long chats -> (3D)
-Chatbot -> convesation chat -> (short term memory) -> (2D)
+Chatbot -> conversation chat -> (short term memory) -> (2D)
 Q&A engine -> prompt - LLM - Answer (1D)
 
 ![alt text](image.png)
@@ -97,19 +96,20 @@ Agent - Function + tools
 rules + Goal -> Agents
 
 
-============
+============ Day 3=======================
 Prompt engineering.
 Top K - top results
 Top P - within probability ranges
 temperature
 
-Zero prompting = General chat 
-Few shot - 
-System promprting  - you are hte program tutor and asking question  (Exaclty this person)
-contextual prompting - Based on the reason (context) and start chat
-Role promptying -> Act like this person (Acting like this person)
 
-Chain of thoughts -> for reasoning purpose
+Zero prompting = General chat 
+Few shot - one or more example. 
+System promprting  - you are the program tutor and asking question  (Exaclty this person)
+contextual prompting - Based on the reason (context) and start chat - you aare going to teach me english
+Role prompting -> Act like this person (Acting like this person)
+Chain of thoughts -> for reasoning purpose. think step by step and provide information.
+
 temprature = 0 - Temperature reshapes these probabilities:
 - Low temperature (0–0.3)
 - Picks the most likely next word
@@ -129,7 +129,6 @@ Tree of thought - (question will be splitted with different answer) value is not
 API key for Ollama
 
 
-
 ReAct - Repeat and action Feature calling.
 ToT-Tree of Thought
 self consistency - 
@@ -139,3 +138,4 @@ Role prompting
 contextual prompting - 
 
 
+=====================Day 9====================
