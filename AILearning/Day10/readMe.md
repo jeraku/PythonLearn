@@ -21,5 +21,3 @@ groqclient
 Load PDF 
 chunks / split PDF
 Vector DB >> FAISS DB and nomic embed text model
-
-

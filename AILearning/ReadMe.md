@@ -5,7 +5,7 @@ Neural network -> measure and reposnse what is the next word.
 Linear -> Near straight line - constant 
 Dalle - Images creation
 LLM -> Its like Os for AI.
-LLLAMA - Ex: Unix like open source
+LLAMA - Ex: Unix like open source
 
 
 How the LLM trained and Created:
@@ -30,14 +30,14 @@ SAFETY ISSUE
 Prompt injection attack
 >> send blank image and ask what do this say - AI will check and repsond something.
 >> hacker links in the AI repsonse.
->> Modiy the url with data exfiltration text and create like a query and pass to the AI. that will give the get resquest related information 
+>> Modify the url with data exfiltration text and create like a query and pass to the AI. that will give the get resquest related information 
 
 Backdoor attack / Data poisoning
 >> sleeper agent attack - > silently destroying the AI by giving false information
 
 Tiktokenizer - split the input and generate a token for every word and use can validate that in their website.
 https://tiktokenizer.vercel.app/ => gives the token used for AI input 
-Context window - is a time period fo the chat. continous coverstation.
+Context window - is a time period for the chat. continous coverstation.
 
 
 =====================
@@ -109,7 +109,7 @@ temperature
 
 Zero prompting = General chat 
 Few shot - one or more example. 
-System promprting  - you are the program tutor and asking question  (Exaclty this person)
+System prompting  - you are the program tutor and asking question  (Exaclty this person)
 contextual prompting - Based on the reason (context) and start chat - you aare going to teach me english
 Role prompting -> Act like this person (Acting like this person)
 Chain of thoughts -> for reasoning purpose. think step by step and provide information.
@@ -162,3 +162,4 @@ Accelerate
 Models
 Spaces
 Datasets
+a

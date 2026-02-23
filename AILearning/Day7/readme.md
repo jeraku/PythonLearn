@@ -33,6 +33,6 @@ donot call someone more than twice
 donot be more friendly without necessarily
 donot give knowledge without being asked.
 Talk less be secretive
-donot know  you next move.
+donot let others know  you next move.
 do only do what you think is right
 someone improved life thank them
