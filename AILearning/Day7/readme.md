@@ -8,11 +8,12 @@ Example= Rice vs arisi
 
 input - text file -> Number -> graph 
 
-Eucledean distance -> based on the pythagores theorem -> root of (x2-x1)^2 + (y2-y1)^2
+Eucledean distance -> based on the pythagores theorem -> square root of (x2-x1)^2 + (y2-y1)^2
 Manhattan distance -> (x2-x1) + (y2-y1)
 Cosine similarity ->  from x0 - draw a line between two points which will result cos0
 
 emdedding - assign the value number in the graphical structure
+
 its an LLM model stores the infomration like rice and arisi - someone already stored and confirmed the values are same.
 
 
@@ -27,3 +28,11 @@ FAISS
 
 
 One hard encoding -> 
+
+donot call someone more than twice
+donot be more friendly without necessarily
+donot give knowledge without being asked.
+Talk less be secretive
+donot know  you next move.
+do only do what you think is right
+someone improved life thank them

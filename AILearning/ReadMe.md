@@ -99,7 +99,11 @@ rules + Goal -> Agents
 ============ Day 3=======================
 Prompt engineering.
 Top K - top results
-Top P - within probability ranges
+Top P - within probability ranges 
+🧠 Top-K is used inside the model.
+🧠 Top-N is used in the application output.
+Top-K = model’s top predictions
+Top-N = top final outputs shown after ranking/filtering
 temperature
 
 
@@ -139,3 +143,22 @@ contextual prompting -
 
 
 =====================Day 9====================
+
+
+
+Transformer
+Diffusers
+Safetensors
+Hub Python library
+Tokenizers
+TRL
+Transformers.js
+Smolagents
+PEFT
+Datasets
+TextGenerationInference
+Accelerate
+
+Models
+Spaces
+Datasets

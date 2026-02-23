@@ -1,6 +1,10 @@
-TOKEN = "><"
 from groq import Groq
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
+TOKEN = os.getenv("GROQ_API_KEY")
 
 client = Groq(api_key=TOKEN)
 
