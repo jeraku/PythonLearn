@@ -22,4 +22,16 @@ Time series -> Influx DB (Log, stock analysing)>> Grafana can also be used in it
 Postgres
 DB engine.  A pool of processes.
 
-Client > Postmaster 
+Client > Postmaster > Backend process pool > 
+
+
+
+Postgres youtube call:
+https://www.youtube.com/live/lo8VWgXUB08
+
+DVD rental DB: 
+https://courses.parottasalna.com/database-engineering/sample-databases/dvd-rental-database?authuser=4
+
+Miro for DB schema details It contains Postgres architecture diagram as well
+https://miro.com/app/board/uXjVLD2T5os=/?authuser=4
+
