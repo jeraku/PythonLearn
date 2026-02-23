@@ -20,3 +20,6 @@ Obsidian DB.
 Time series -> Influx DB (Log, stock analysing)>> Grafana can also be used in it.
 
 Postgres
+DB engine.  A pool of processes.
+
+Client > Postmaster 
