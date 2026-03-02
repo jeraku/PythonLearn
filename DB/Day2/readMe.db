@@ -1,0 +1,32 @@
+Roles, Users, Group
+
+Roles
+Ex: Developer, Admin
+--------------
+Users
+Ex: Individual employees.
+--------------
+Group:
+ex: specific group
+--------------
+in Postgres all are same
+
+
+Role -> Identity(Developer) -> Cannot login, New DB creation not allowed -> group allowed
+User-> Login as user -> whoc can login -> -U -> he can create DB -> group not allowed
+
+Access
+Login - User 
+Another Super user  -> Admin
+Create DB
+Inherit-> (Developer roles can read and write)
+
+peer authentication > 
+passowrd authentication > 
+
+psql -U jegan -d <DBNAME>
+
+Basic select Queries.
+command
+select * form actor limit = 10;
+

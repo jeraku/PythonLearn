@@ -1,5 +1,4 @@
 DB: 
-
 rigid structure
 
 Schema : Blue print
@@ -23,7 +22,6 @@ Postgres
 DB engine.  A pool of processes.
 
 Client > Postmaster > Backend process pool > 
-
 
 
 Postgres youtube call:
