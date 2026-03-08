@@ -20,13 +20,16 @@ Password: password
 Database: my_database (or leave blank to use default)
 
 4)
+
 to login form command line.
 docker exec -it postgres_db psql -U admin -d my_database
 pwd: password
 
-5) docker cp dvdrental.tar 1eba7aa7279a:/home/dvdrental
+5) docker cp dvdrental.tar 86243781d2cb:/home/dvdrental.tar
 
-6) pg_restore -U admin -d my_database /home/dvdrental/rental.tar
+
+6) docker exec -it 86243781d2cb bash > hope its postgres_db 
+pg_restore -U admin -d my_database /home/dvdrental.tar
 
 
 Commands: 
@@ -36,8 +39,10 @@ Access to the role
 >>  CREATE ROLE jeganlogin with LOGIN Password 'test123';
 
 >> GRANT sb_developer TO jeganlogin
->> GRANT SELECT ON <TableName> to db_developer;
+>> GRANT SELECT ON <TableName> to db_developer; 
 
+
+///// SCHEMA >> ITS a folder like structure.
 >> CREATE ROLE analytics_team;
 >> GRANT SELECT on ALL TABLES in SCHEMA PUBLIC to analytics_team;
 >> ALTER ROLE sb_developer WITH SUPERUSER;
@@ -45,9 +50,16 @@ Access to the role
 >> GRANT analytics_team to jegan_user;
 >> REVOKE analytics_team from jegan_user;
 
-DB level previlages: 
+DB level previlages:  Login details
 logged in user. RBAC - Role based access control.
 
-Table previlages:
+Table previlages: Table level details.
 select, Insert, update, delete, Trigger, Trancate
 
+
+
+/c dbname = To connect ot database.
+/l = list database
+select current_database(); to show current db
+\dt > List of relation
+\d <table name> - displays the permission of the table.  

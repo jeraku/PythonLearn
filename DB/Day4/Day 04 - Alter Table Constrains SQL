@@ -1,0 +1,114 @@
+CREATE DATABASE academy_db;
+\c academy_db;
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+1. Add basic column
+
+ALTER TABLE users
+ADD COLUMN phone VARCHAR(15);
+
+2. Add column with not null
+
+ALTER TABLE users
+ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE;
+
+3. Add column with CHECK constraint
+
+ALTER TABLE users
+ADD COLUMN age INT CHECK (age >= 18);
+
+
+4. Add Unique Constraint
+
+ALTER TABLE users
+ADD CONSTRAINT unique_email UNIQUE (email);
+
+5. Add composite unique constraint
+
+ALTER TABLE users
+ADD CONSTRAINT unique_username_email UNIQUE (username, email);
+
+6. Add Foreign Key Constraint 
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL
+);
+
+ALTER TABLE users
+ADD COLUMN role_id INT;
+
+ALTER TABLE users
+ADD CONSTRAINT fk_role
+FOREIGN KEY (role_id)
+REFERENCES roles(role_id)
+ON DELETE SET NULL;
+
+Types of On Delete, 
+
+ON DELETE CASCADE - Delete users if role deleted
+ON DELETE SET NULL - Just remove role
+ON DELETE RESTRICT - Prevent deletion
+
+
+7. Alter Column - Change Data Type
+
+ALTER TABLE users
+ALTER COLUMN phone TYPE VARCHAR(20);
+
+8. Alter column - Drop NOT NULL
+
+ALTER TABLE users
+ALTER COLUMN phone DROP NOT NULL;
+
+
+9. Alter column - SET Default
+
+ALTER TABLE users
+ALTER COLUMN is_active SET DEFAULT FALSE;
+
+
+10. Alter column - DROP Default
+
+ALTER TABLE users
+ALTER COLUMN is_active DROP DEFAULT;
+
+11. Drop Constraint
+
+ALTER TABLE users
+DROP CONSTRAINT unique_email;
+
+
+12. Rename Columns
+
+ALTER TABLE users
+RENAME COLUMN username TO user_name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

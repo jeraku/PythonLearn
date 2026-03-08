@@ -1,0 +1,69 @@
+CREATE TABLE users (
+id BIGSERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+age SMALLINT CHECK (age >= 18),
+salary NUMERIC(10, 2),
+is_active BOOLEAN DEFAULT TRUE,
+role VARCHAR(20) CHECK (role IN ('admin', 'user', 'manager')),
+created_at TIMESTAMPTZ DEFAULT now());
+
+
+
+
+userdb=# \dt
+          List of relations
+ Schema | Name  | Type  |   Owner    
+--------+-------+-------+------------
+ public | users | table | syedjaferk
+(1 row)
+
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('Syed', 'contact.syedjafer@gmail.com', 28, 100);
+
+
+SELECT * FROM users;
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('Jafer', 'contact.syedjafer@gmail.com', 29, 100);
+
+SELECT * FROM users;
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('Jafer', 'contact.syedjafer2@gmail.com', 17, 100);
+
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('Jafer', 'contact.syedjafer2@gmail.com', 27, 100);
+
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('Jafer', 'contact.syedjafer2@gmail.com', 27, 100);
+
+SELECT * FROM users;
+
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('user3', 'user3@gmail.com', 27, 100), ('user4', 'user4@gmail.com', 34, 102);
+
+UPDATE users SET salary = salary + 500 WHERE id = 9;
+
+UPDATE users SET salary = salary + 500 WHERE id = 9 RETURNING id;
+
+UPDATE users SET salary = salary + 500 ;
+
+UPDATE users SET is_active = FALSE WHERE created_at < now() - INTERVAL '10 minute';
+
+DELETE FROM users WHERE id = 2;
+
+DELETE FROM users WHERE is_active = False;
+
+TRUNCATE TABLE users;
+
+INSERT INTO users ( name, email, age, salary ) VALUES ('user5', 'user5@gmail.com', 27, 100), 
+('user5', 'user6@gmail.com', 34, 102) RETURNING id;
+
+
+CREATE TABLE employees ( id SERIAL PRIMARY KEY, email VARCHAR(100) UNIQUE);
+
+INSERT INTO employees (email) VALUES (NULL);
+
+INSERT INTO employees (email) VALUES (NULL);
+
+INSERT INTO employees (email) VALUES (NULL);
+

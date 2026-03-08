@@ -21,8 +21,8 @@ Another Super user  -> Admin
 Create DB
 Inherit-> (Developer roles can read and write)
 
-peer authentication > 
-passowrd authentication > 
+peer authentication > Machine user authentication we can login into SQL.
+passowrd authentication > MD5 authentication
 
 psql -U jegan -d <DBNAME>
 
@@ -30,3 +30,7 @@ Basic select Queries.
 command
 select * form actor limit = 10;
 
+EXPLAIN select * from actor;
+
+select * from actor order by first_name ASC LIMIT 3;
+select * from actor order by first_name ASC OFFSET 3 LIMIT 3;
