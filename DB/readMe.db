@@ -63,3 +63,17 @@ select, Insert, update, delete, Trigger, Trancate
 select current_database(); to show current db
 \dt > List of relation
 \d <table name> - displays the permission of the table.  
+CHECKPOINT;
+show WAL_;
+show WAL_Buffers;
+COMMIT -> record stores in WAL and later writes into disk by checkpointer.
+SHOW Sync; > shows synchrosnous COMMIT
+SET synchronous_commit = 'off';
+
+
+| Property    | Meaning                                       | Example                                             |
+| ----------- | --------------------------------------------- | --------------------------------------------------- |
+| Atomicity   | All-or-nothing transaction                    | Money transfer succeeds completely or not at all    |
+| Consistency | Maintains database rules                      | Account balance cannot be negative                  |
+| Isolation   | Transactions do not interfere with each other | Two users updating same account see correct results |
+| Durability  | Changes persist after commit                  | Deposit remains even after a crash                  |

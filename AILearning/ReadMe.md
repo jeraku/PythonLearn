@@ -1,7 +1,7 @@
 LLM
 llama (two files) (parameters and run.c)
 
-Neural network -> measure and reposnse what is the next word.
+Neural network -> measure and reponse what is the next word.
 Linear -> Near straight line - constant 
 Dalle - Images creation
 LLM -> Its like Os for AI.
@@ -24,7 +24,7 @@ https://arena.ai/leaderboard/text
 
 SAFETY ISSUE
 >> Jail break - acting like a polished person and get info from the AI . 
- eX: encoded value will iddisplay the results.
+ eX: encoded value will identified and display the results.
     Image - backside content we can inject the details to AI.
 
 Prompt injection attack
@@ -35,14 +35,14 @@ Prompt injection attack
 Backdoor attack / Data poisoning
 >> sleeper agent attack - > silently destroying the AI by giving false information
 
-Tiktokenizer - split the input and generate a token for every word and use can validate that in their website.
+Tiktokenizer - split the input and generate a token for every word and user can validate that in their website.
 https://tiktokenizer.vercel.app/ => gives the token used for AI input 
 Context window - is a time period for the chat. continous coverstation.
 
 
 =====================
 Generative AI
-Named entity Recognition -> based on the text automatically recognise the detials.
+Named entity Recognition -> based on the text, automatically recognise the details.
 runpod - rents GPU
 
 LLM -> NVDIA GPU -> CUDA software 
@@ -57,8 +57,7 @@ Running the model is called inferntial/Infernce.
 Quantization -> reduce the size and response
 Quantised models -> reduced size  ex: llama.cpp, gguf, ggml
 
-
-CPU / GPU (NVDIA/AMD) /TPU (Google) / Metal (Apple software) M1,M2,M3
+CPU / GPU (NVDIA/AMD) /TPU (Google) / Meta (Apple software) M1,M2,M3
 
 Pytorch (C++)
 Jax
@@ -69,7 +68,6 @@ LLM API -> OPENAI
 
 properietary model - cost involved.
 open models. -> modelweight (.bin file/safetensor file) -> selfhost
-
 
 5 levels of LLAPPs
 LLM OS
@@ -110,7 +108,7 @@ temperature
 Zero prompting = General chat 
 Few shot - one or more example. 
 System prompting  - you are the program tutor and asking question  (Exaclty this person)
-contextual prompting - Based on the reason (context) and start chat - you aare going to teach me english
+contextual prompting - Based on the reason (context) and start chat - you are going to teach me english
 Role prompting -> Act like this person (Acting like this person)
 Chain of thoughts -> for reasoning purpose. think step by step and provide information.
 
@@ -131,7 +129,6 @@ self consistency - (question will be splitted with different answer) value is se
 Tree of thought - (question will be splitted with different answer) value is not set
 
 API key for Ollama
-
 
 ReAct - Repeat and action Feature calling.
 ToT-Tree of Thought
@@ -162,4 +159,3 @@ Accelerate
 Models
 Spaces
 Datasets
-a

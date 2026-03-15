@@ -9,7 +9,6 @@ Query()
 answer= chat with tools(query)
 print(answer)
 
-
 groqinput -> message (role: system and user)
 
 groq_client.js -> 
