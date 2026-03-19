@@ -1,4 +1,6 @@
 ### Window function.
+RANKING and AGGREGATION
+
 select AVG(salart) from department;
 select emp_name, salary, avg_salary from employees as e inner join (select AVG(salary), salary, a.dep form employee as a GRPoup by a.department) as a on a.department = e.department
 
