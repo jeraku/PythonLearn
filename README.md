@@ -10,3 +10,4 @@ Mainly this can be used for lower trail applicaiton test
 
 <!-- sublime editor -->
 
+GPU = General personal user
