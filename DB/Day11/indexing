@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    age INT,
+    is_active BOOLEAN,
+    created_at TIMESTAMP,
+    profile JSONB
+);
+
+
+
+
+INSERT INTO users (name, email, age, is_active, created_at, profile)
+SELECT 
+    'user_' || i,
+    'user_' || i || '@test.com',
+    (random() * 60)::int,
+    (random() > 0.3),
+    NOW() - (random() * INTERVAL '365 days'),
+    jsonb_build_object(
+        'role', CASE WHEN random() > 0.8 THEN 'admin' ELSE 'user' END,
+        'city', CASE WHEN random() > 0.5 THEN 'Chennai' ELSE 'Bangalore' END
+    )
+FROM generate_series(1, 500000) i;
+

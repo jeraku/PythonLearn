@@ -2,7 +2,7 @@ ollama - for running the model
 chromadb - vector db
 
 direct search  -> In DB -> "select * from employee where name = 'jegan'"
-semantic search -> In DB -> "select * from employe  where name = 'jega*'"
+semantic search -> In DB -> "select * from employee  where name = 'jega*'"
 
 Example= Rice vs arisi
 
@@ -29,10 +29,10 @@ FAISS
 
 One hard encoding -> 
 
-donot call someone more than twice
-donot be more friendly without necessarily
+donot call someone more than twice.
+donot be more friendly without necessarily.
 donot give knowledge without being asked.
-Talk less be secretive
-donot let others know  you next move.
+Talk less be secretive.
+donot let others know you next move.
 do only do what you think is right
 someone improved life thank them

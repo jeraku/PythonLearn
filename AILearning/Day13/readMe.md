@@ -41,7 +41,7 @@ The AI uses **two types of memory**:
 This is memory for **the current chat session only**.
 
 ### How it works:
-1. You send a message  
+1. You send a message
 2. System loads your previous messages from Redis  
 3. Adds your new message  
 4. Sends everything to the LLM  
@@ -70,7 +70,7 @@ Used for personalization.
 ### What gets stored?
 - Your preferences  
 - Important details  
-- Summaries of your past chats  
+- Summary's of your past chats  
 
 ### How it works (simple):
 1. Your message is converted into numbers (embedding)  

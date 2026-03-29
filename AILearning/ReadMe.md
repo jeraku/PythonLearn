@@ -159,3 +159,11 @@ Accelerate
 Models
 Spaces
 Datasets
+
+
+
+Redis
+Vector DB
+chromaDB
+Groq
+LLM 

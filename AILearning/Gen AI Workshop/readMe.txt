@@ -58,8 +58,6 @@ open AI playground
 Image generation
 Aesthetic prompting
 
-
-
 ==================================
 Tools:
 1) Gemini 

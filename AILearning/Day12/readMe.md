@@ -45,5 +45,5 @@ memory, tool > get user input and
 
 
 simple reflex agent. 
-Torun: python main.py
+To run: python main.py
 

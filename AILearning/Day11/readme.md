@@ -10,15 +10,13 @@ No of occurrences in the particuar page.
 IDF >   Inverse Term Frequency
 Ex: prepositions -> that, to, is, at
 
-
 TF + IDF -> generates score and its purely rule based.
 
 BM25 -> Best match 25 -> probabilistic manner ->  Text search 
 
 Algorithms
 KNN 
-ANN 
-
+ANN
 
 
 RAG architecture.

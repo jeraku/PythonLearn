@@ -1,5 +1,5 @@
 RAG - Vector DB 
-Data retrieve -> chunk -> augment -> output 
+Data retrieve -> chunk -> arugment -> output 
 
 LLM cut off date -> gold rate today. 
 
@@ -7,13 +7,11 @@ LLM cut off date -> gold rate today.
 Document - Chunks -> embedding model -> vector Db -> 
 User -> query -> 
 
-query 
+query
 context
 Augment
 prompt
 LLM
-
-
 
 Langchain
 groqclient
