@@ -1,5 +1,8 @@
 https://tamilarasan.io/talks-toronto.html
 
+https://tamilpesu.in/en/letters/uyirmei/
+https://github.com/sarves/thamizhi-morph
+
 
 ### Generative AI
 Automatically think and create a new item.
