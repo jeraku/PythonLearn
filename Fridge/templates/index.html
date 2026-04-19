@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❄️ FridgeKeeper</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1f1a;
+    --surface: #132b23;
+    --surface2: #1a3829;
+    --border: #2a5040;
+    --accent: #34d399;
+    --accent2: #6ee7b7;
+    --accent-dim: rgba(52,211,153,0.12);
+    --warn: #fbbf24;
+    --warn-dim: rgba(251,191,36,0.12);
+    --danger: #f87171;
+    --danger-dim: rgba(248,113,113,0.12);
+    --text: #ecfdf5;
+    --text-muted: #6b9e88;
+    --text-dim: #3d7060;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(52,211,153,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(52,211,153,0.06) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* ── Header ── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 32px 0 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .logo { display: flex; align-items: center; gap: 14px; }
+
+  .logo-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--accent), #059669);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 0 20px rgba(52,211,153,0.3);
+  }
+
+  .logo h1 { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); font-style: italic; }
+
+  .server-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 999px; padding: 6px 14px;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  .server-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* ── File / sync bar ── */
+  .sync-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .sync-bar .sync-info { flex: 1; min-width: 160px; }
+  .sync-bar .sync-title { font-weight: 600; font-size: 13px; }
+  .sync-bar .sync-hint  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  #file-upload-input { display: none; }
+
+  .upload-label {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 16px; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    background: var(--surface2); color: var(--text-muted);
+    border: 1px solid var(--border);
+    transition: all 0.18s; white-space: nowrap; user-select: none;
+  }
+  .upload-label:hover { border-color: var(--accent); color: var(--accent); }
+
+  .sync-bar.dropping { border-color: var(--accent); background: var(--accent-dim); }
+
+  #save-status {
+    font-size: 12px; color: var(--text-dim);
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 999px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+  }
+  #save-status.saving { color: var(--warn); border-color: rgba(251,191,36,0.3); background: var(--warn-dim); }
+  #save-status.saved  { color: var(--accent); }
+  #save-status.error  { color: var(--danger); }
+
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* ── Alerts ── */
+  #alerts-banner {
+    display: none;
+    background: linear-gradient(135deg, rgba(248,113,113,0.15), rgba(251,191,36,0.1));
+    border: 1px solid rgba(248,113,113,0.35);
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-bottom: 24px; animation: slideIn 0.4s ease;
+  }
+  #alerts-banner.show { display: block; }
+  .alert-title { font-weight: 600; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .alert-pill { background: rgba(248,113,113,0.15); border: 1px solid rgba(248,113,113,0.3); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
+  .alert-pill.warn { background: var(--warn-dim); border-color: rgba(251,191,36,0.3); color: var(--warn); }
+  .alert-pill.danger { color: var(--danger); }
+
+  /* ── Stats ── */
+  .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 28px; }
+
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px 20px;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .stat-card::after { content: attr(data-icon); position: absolute; right: 14px; top: 12px; font-size: 28px; opacity: 0.2; }
+  .stat-value { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+
+  /* ── Toolbar ── */
+  .toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .search-wrap { flex: 1; min-width: 220px; position: relative; }
+  .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+
+  input[type="text"], input[type="number"], input[type="date"], select, textarea {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 10px 14px;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+  }
+  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,211,153,0.12); }
+  .search-wrap input { padding-left: 38px; }
+  select option { background: var(--surface2); }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 18px; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer; border: none; transition: all 0.18s; white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: #052e16; box-shadow: 0 0 14px rgba(52,211,153,0.25); }
+  .btn-primary:hover { background: var(--accent2); box-shadow: 0 0 20px rgba(52,211,153,0.4); transform: translateY(-1px); }
+  .btn-ghost { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-danger { background: rgba(248,113,113,0.15); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
+  .btn-danger:hover { background: rgba(248,113,113,0.25); }
+  .btn-sm { padding: 7px 13px; font-size: 13px; }
+  .btn-icon { width: 32px; height: 32px; padding: 0; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; }
+
+  /* ── Pills ── */
+  .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .pill { padding: 5px 13px; border-radius: 999px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-muted); transition: all 0.18s; }
+  .pill:hover, .pill.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+  /* ── Table ── */
+  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: var(--surface2); border-bottom: 1px solid var(--border); }
+  th { padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid rgba(42,80,64,0.4); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(52,211,153,0.05); }
+  td { padding: 12px 16px; font-size: 13.5px; vertical-align: middle; }
+  td.item-name { font-weight: 500; }
+
+  .cat-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--accent-dim); color: var(--accent2); border: 1px solid rgba(52,211,153,0.2); }
+
+  .expiry-chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+  .expiry-chip.safe { color: var(--text-muted); }
+  .expiry-chip.soon { background: var(--warn-dim); color: var(--warn); }
+  .expiry-chip.urgent { background: var(--danger-dim); color: var(--danger); animation: pulse 1.5s infinite; }
+  .expiry-chip.expired { background: rgba(100,0,0,0.3); color: #fca5a5; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+  .row-actions { display: flex; gap: 6px; }
+
+  /* ── Loading overlay ── */
+  #loading-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(13,31,26,0.8); backdrop-filter: blur(4px);
+    z-index: 300; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+  }
+  #loading-overlay.show { display: flex; }
+  .spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: var(--text-muted); }
+
+  /* ── Modals ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 32px; width: 100%; max-width: 480px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); animation: slideUp 0.25s ease; }
+  .modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 24px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-grid .full { grid-column: 1/-1; }
+  label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 6px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+  /* ── Empty state ── */
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--text-dim); }
+  .empty-state .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+  .empty-state p { font-size: 15px; margin-bottom: 20px; }
+
+  /* ── Toast ── */
+  #toast-container { position: fixed; bottom: 28px; right: 28px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
+  .toast { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 18px; font-size: 13px; display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; min-width: 260px; box-shadow: var(--shadow); }
+  .toast.success { border-color: rgba(52,211,153,0.4); color: var(--accent2); }
+  .toast.error   { border-color: rgba(248,113,113,0.4); color: var(--danger); }
+  .toast.warn    { border-color: rgba(251,191,36,0.4);  color: var(--warn); }
+
+  @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+  @media (max-width: 768px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    header { flex-direction: column; gap: 16px; align-items: flex-start; }
+    td:nth-child(7), th:nth-child(7) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loading-text">Loading…</div>
+</div>
+
+<div class="app">
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">❄️</div>
+      <h1>Fridge<span>Keeper</span></h1>
+    </div>
+    <div class="server-badge">
+      <div class="server-dot"></div>
+      <span>localhost:5050</span>
+    </div>
+  </header>
+
+  <!-- Sync bar -->
+  <div class="sync-bar" id="sync-bar">
+    <span style="font-size:26px">📊</span>
+    <div class="sync-info">
+      <div class="sync-title" id="sync-filename">fridge_groceries.xlsx</div>
+      <div class="sync-hint">Changes auto-save to Excel · Upload a different file · Drag &amp; drop supported</div>
+    </div>
+
+    <!-- Hidden file input -->
+    <input type="file" id="file-upload-input" accept=".xlsx,.xls" onchange="uploadFile(this.files[0])">
+    <label for="file-upload-input" class="upload-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Upload .xlsx
+    </label>
+
+    <button class="btn btn-ghost btn-sm" onclick="downloadExcel()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </button>
+
+    <button class="btn btn-ghost btn-sm" onclick="createSample()">
+      🧪 Load Sample
+    </button>
+
+    <div id="save-status">
+      <div class="status-dot"></div>
+      <span id="save-status-text">Synced</span>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div id="alerts-banner">
+    <div class="alert-title">🚨 Expiring Soon — Act Fast!</div>
+    <div class="alert-items" id="alert-items"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card" data-icon="🥗">
+      <div class="stat-value" id="stat-total">—</div>
+      <div class="stat-label">Total Items</div>
+    </div>
+    <div class="stat-card" data-icon="⚠️">
+      <div class="stat-value" id="stat-expiring" style="color:var(--warn)">—</div>
+      <div class="stat-label">Expiring in 3 Days</div>
+    </div>
+    <div class="stat-card" data-icon="🚨">
+      <div class="stat-value" id="stat-expired" style="color:var(--danger)">—</div>
+      <div class="stat-label">Expired / Today</div>
+    </div>
+    <div class="stat-card" data-icon="📦">
+      <div class="stat-value" id="stat-cats">—</div>
+      <div class="stat-label">Categories</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="search-input" placeholder="Search items, categories, notes…" oninput="renderTable()">
+    </div>
+    <select id="sort-select" onchange="renderTable()" style="width:auto;min-width:160px">
+      <option value="expiry">Sort: Expiry Date</option>
+      <option value="name">Sort: Name A–Z</option>
+      <option value="category">Sort: Category</option>
+      <option value="added">Sort: Date Added</option>
+    </select>
+    <select id="status-filter" onchange="renderTable()" style="width:auto;min-width:190px">
+      <option value="all">Filter: All Status</option>
+      <option value="safe">Safe</option>
+      <option value="expiring">Expiring Soon</option>
+      <option value="expired">Expired / Today</option>
+    </select>
+    <button class="btn btn-primary" onclick="openAddModal()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Item
+    </button>
+  </div>
+
+  <!-- Category pills -->
+  <div class="filter-pills" id="filter-pills">
+    <button class="pill active" data-cat="All" onclick="setFilter(this)">All</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Category</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Expiry Date</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="items-tbody"></tbody>
+    </table>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="icon">🧊</div>
+      <p>Your fridge is empty!</p>
+      <button class="btn btn-primary" onclick="createSample()">Load sample data</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="modal-overlay" id="item-modal">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title" id="modal-title">➕ Add Grocery Item</div>
+    <div class="form-grid">
+      <div class="full">
+        <label>Item Name *</label>
+        <input type="text" id="f-name" placeholder="e.g. Whole Milk">
+      </div>
+      <div>
+        <label>Category *</label>
+        <select id="f-category"></select>
+      </div>
+      <div>
+        <label>Quantity *</label>
+        <input type="number" id="f-qty" placeholder="0" min="0" step="0.1">
+      </div>
+      <div>
+        <label>Unit</label>
+        <input type="text" id="f-unit" placeholder="g, litre, pcs…">
+      </div>
+      <div>
+        <label>Expiry Date *</label>
+        <input type="date" id="f-expiry">
+      </div>
+      <div>
+        <label>Added Date</label>
+        <input type="date" id="f-added">
+      </div>
+      <div class="full">
+        <label>Notes</label>
+        <input type="text" id="f-notes" placeholder="Optional notes…">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveItem()">Save Item</button>
+    </div>
+  </div>
+</div>
+
+<!-- Expiry Modal -->
+<div class="modal-overlay" id="expiry-modal">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:360px">
+    <div class="modal-title">📅 Update Expiry Date</div>
+    <label>Item</label>
+    <p id="expiry-item-name" style="font-weight:600;font-size:16px;margin:6px 0 18px;color:var(--accent)"></p>
+    <label>New Expiry Date *</label>
+    <input type="date" id="f-new-expiry">
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeExpiryModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveExpiry()">Update</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let items = [];
+let CATEGORIES = ["Dairy","Meat & Fish","Vegetables","Fruits","Beverages","Condiments","Leftovers","Other"];
+let editId = null;
+let expiryEditId = null;
+let activeFilter = 'All';
+let saveTimer = null;
+
+// ── Boot ───────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  populateCategorySelect();
+  document.getElementById('f-added').value = today();
+  document.getElementById('f-expiry').value = daysFromNow(7);
+  setupDragDrop();
+  loadFromServer();
+});
+
+// ── Server API calls ───────────────────────────────────────────────────────
+async function loadFromServer() {
+  showLoading('Loading from Excel…');
+  try {
+    const res = await fetch('/api/items');
+    const data = await res.json();
+    if (data.status === 'ok') {
+      items = data.items;
+      CATEGORIES = data.categories || CATEGORIES;
+      populateCategorySelect();
+      renderAll();
+      checkAlerts();
+      setSyncStatus('saved');
+      toast(`✅ Loaded ${items.length} items`, 'success');
+    } else {
+      toast('❌ ' + data.message, 'error');
+    }
+  } catch(e) {
+    toast('❌ Could not connect to server', 'error');
+    setSyncStatus('error');
+  } finally {
+    hideLoading();
+  }
+}
+
+async function saveToServer() {
+  setSyncStatus('saving');
+  try {
+    const res = await fetch('/api/items', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items })
+    });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      setSyncStatus('saved');
+    } else {
+      setSyncStatus('error');
+      toast('❌ Save failed: ' + data.message, 'error');
+    }
+  } catch(e) {
+    setSyncStatus('error');
+    toast('❌ Server unreachable', 'error');
+  }
+}
+
+function scheduleSave() {
+  setSyncStatus('saving');
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveToServer, 800); // debounce 800ms
+}
+
+async function uploadFile(file) {
+  if (!file) return;
+  showLoading(`Uploading ${file.name}…`);
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      items = data.items;
+      CATEGORIES = data.categories || CATEGORIES;
+      populateCategorySelect();
+      document.getElementById('sync-filename').textContent = file.name;
+      renderAll(); checkAlerts(); setSyncStatus('saved');
+      toast(data.message, 'success');
+    } else {
+      toast('❌ ' + data.message, 'error');
+    }
+  } catch(e) {
+    toast('❌ Upload failed', 'error');
+  } finally {
+    hideLoading();
+    document.getElementById('file-upload-input').value = '';
+  }
+}
+
+function downloadExcel() {
+  window.location.href = '/api/download';
+  toast('📥 Downloading Excel file…', 'success');
+}
+
+async function createSample() {
+  showLoading('Creating sample data…');
+  try {
+    const res = await fetch('/api/create-sample', { method: 'POST' });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      items = data.items;
+      renderAll(); checkAlerts(); setSyncStatus('saved');
+      toast(`✅ Loaded ${items.length} sample items`, 'success');
+    }
+  } catch(e) { toast('❌ Error creating sample', 'error'); }
+  finally { hideLoading(); }
+}
+
+async function deleteItemFromServer(id) {
+  const item = items.find(i => i.ID === id);
+  if (!item || !confirm(`Remove "${item.Item}" from the fridge?`)) return;
+  items = items.filter(i => i.ID !== id);
+  renderAll(); checkAlerts();
+  toast(`🗑️ "${item.Item}" removed`, 'warn');
+  scheduleSave();
+}
+
+// ── UI helpers ─────────────────────────────────────────────────────────────
+function setSyncStatus(state) {
+  const el = document.getElementById('save-status');
+  const txt = document.getElementById('save-status-text');
+  el.className = state;
+  if (state === 'saving') txt.textContent = 'Saving…';
+  if (state === 'saved')  txt.textContent = 'Synced ✓';
+  if (state === 'error')  txt.textContent = 'Save error';
+}
+
+function showLoading(msg = 'Loading…') {
+  document.getElementById('loading-text').textContent = msg;
+  document.getElementById('loading-overlay').classList.add('show');
+}
+function hideLoading() {
+  document.getElementById('loading-overlay').classList.remove('show');
+}
+
+function setupDragDrop() {
+  const bar = document.getElementById('sync-bar');
+  bar.addEventListener('dragover', e => { e.preventDefault(); bar.classList.add('dropping'); });
+  bar.addEventListener('dragleave', () => bar.classList.remove('dropping'));
+  bar.addEventListener('drop', e => {
+    e.preventDefault(); bar.classList.remove('dropping');
+    const f = e.dataTransfer.files[0];
+    if (f) uploadFile(f);
+  });
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function renderAll() { buildPills(); renderTable(); updateStats(); }
+
+function renderTable() {
+  const q    = document.getElementById('search-input').value.toLowerCase();
+  const sort = document.getElementById('sort-select').value;
+
+  const status = document.getElementById('status-filter').value;
+  let filtered = items.filter(item => {
+    const matchCat = activeFilter === 'All' || item.Category === activeFilter;
+    const days = daysUntil(item['Expiry Date']);
+    const matchStatus = status === 'all'
+      || (status === 'safe' && days > 3)
+      || (status === 'expiring' && days > 0 && days <= 3)
+      || (status === 'expired' && days <= 0);
+    const matchQ   = !q || item.Item.toLowerCase().includes(q)
+      || item.Category.toLowerCase().includes(q)
+      || (item.Notes||'').toLowerCase().includes(q);
+    return matchCat && matchStatus && matchQ;
+  });
+
+  filtered.sort((a,b) => {
+    if (sort === 'name')     return a.Item.localeCompare(b.Item);
+    if (sort === 'category') return a.Category.localeCompare(b.Category);
+    if (sort === 'added')    return (a['Added Date']||'').localeCompare(b['Added Date']||'');
+    return (a['Expiry Date']||'').localeCompare(b['Expiry Date']||'');
+  });
+
+  const tbody = document.getElementById('items-tbody');
+  tbody.innerHTML = '';
+  const empty = document.getElementById('empty-state');
+  empty.style.display = filtered.length ? 'none' : 'block';
+
+  filtered.forEach(item => {
+    const days = daysUntil(item['Expiry Date']);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="item-name">${esc(item.Item)}</td>
+      <td><span class="cat-badge">${esc(item.Category)}</span></td>
+      <td>${item.Quantity}</td>
+      <td style="color:var(--text-muted);font-size:13px">${esc(item.Unit||'')}</td>
+      <td>${item['Expiry Date']||'—'}</td>
+      <td>${expiryChip(days)}</td>
+      <td style="color:var(--text-muted);font-size:12px">${esc(item.Notes||'')}</td>
+      <td>
+        <div class="row-actions">
+          <button class="btn btn-ghost btn-icon" title="Edit"         onclick="openEditModal(${item.ID})">✏️</button>
+          <button class="btn btn-ghost btn-icon" title="Update Expiry" onclick="openExpiryModal(${item.ID})">📅</button>
+          <button class="btn btn-danger btn-icon" title="Delete"      onclick="deleteItemFromServer(${item.ID})">🗑️</button>
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function expiryChip(days) {
+  if (days < 0)   return `<span class="expiry-chip expired">🔴 ${Math.abs(days)}d ago</span>`;
+  if (days === 0) return `<span class="expiry-chip urgent">🚨 Today!</span>`;
+  if (days <= 1)  return `<span class="expiry-chip urgent">⚡ ${days}d left</span>`;
+  if (days <= 3)  return `<span class="expiry-chip soon">⚠️ ${days}d left</span>`;
+  return `<span class="expiry-chip safe">${days}d</span>`;
+}
+
+function updateStats() {
+  document.getElementById('stat-total').textContent    = items.length;
+  document.getElementById('stat-expiring').textContent = items.filter(i => { const d=daysUntil(i['Expiry Date']); return d>=1&&d<=3; }).length;
+  document.getElementById('stat-expired').textContent  = items.filter(i => daysUntil(i['Expiry Date'])<=0).length;
+  document.getElementById('stat-cats').textContent     = new Set(items.map(i=>i.Category)).size;
+}
+
+function checkAlerts() {
+  const urgent = items.filter(i => daysUntil(i['Expiry Date']) <= 3);
+  const banner = document.getElementById('alerts-banner');
+  if (!urgent.length) { banner.classList.remove('show'); return; }
+  banner.classList.add('show');
+  document.getElementById('alert-items').innerHTML = urgent
+    .sort((a,b) => daysUntil(a['Expiry Date']) - daysUntil(b['Expiry Date']))
+    .map(i => {
+      const d = daysUntil(i['Expiry Date']);
+      const cls = d <= 1 ? 'danger' : 'warn';
+      const label = d < 0 ? `expired ${Math.abs(d)}d ago` : d === 0 ? 'expires TODAY' : `${d}d left`;
+      return `<span class="alert-pill ${cls}">${esc(i.Item)} — ${label}</span>`;
+    }).join('');
+}
+
+function buildPills() {
+  const cats = ['All', ...new Set(items.map(i => i.Category))];
+  document.getElementById('filter-pills').innerHTML = cats.map(c =>
+    `<button class="pill${c===activeFilter?' active':''}" data-cat="${c}" onclick="setFilter(this)">${c}</button>`
+  ).join('');
+}
+
+function setFilter(btn) {
+  activeFilter = btn.dataset.cat;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+// ── Modals ─────────────────────────────────────────────────────────────────
+function populateCategorySelect() {
+  document.getElementById('f-category').innerHTML = CATEGORIES.map(c=>`<option value="${c}">${c}</option>`).join('');
+}
+
+function openAddModal() {
+  editId = null;
+  document.getElementById('modal-title').textContent = '➕ Add Grocery Item';
+  ['f-name','f-qty','f-unit','f-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-expiry').value   = daysFromNow(7);
+  document.getElementById('f-added').value    = today();
+  document.getElementById('f-category').value = CATEGORIES[0];
+  document.getElementById('item-modal').classList.add('show');
+  setTimeout(() => document.getElementById('f-name').focus(), 100);
+}
+
+function openEditModal(id) {
+  const item = items.find(i => i.ID === id); if (!item) return;
+  editId = id;
+  document.getElementById('modal-title').textContent  = '✏️ Edit Item';
+  document.getElementById('f-name').value     = item.Item;
+  document.getElementById('f-qty').value      = item.Quantity;
+  document.getElementById('f-unit').value     = item.Unit || '';
+  document.getElementById('f-notes').value    = item.Notes || '';
+  document.getElementById('f-expiry').value   = item['Expiry Date'] || '';
+  document.getElementById('f-added').value    = item['Added Date'] || '';
+  document.getElementById('f-category').value = item.Category;
+  document.getElementById('item-modal').classList.add('show');
+}
+
+function closeModal() { document.getElementById('item-modal').classList.remove('show'); }
+
+function saveItem() {
+  const name   = document.getElementById('f-name').value.trim();
+  const qty    = document.getElementById('f-qty').value;
+  const unit   = document.getElementById('f-unit').value.trim();
+  const expiry = document.getElementById('f-expiry').value;
+  const added  = document.getElementById('f-added').value;
+  const cat    = document.getElementById('f-category').value;
+  const notes  = document.getElementById('f-notes').value.trim();
+
+  if (!name)                       { toast('⚠️ Item name is required','warn'); return; }
+  if (!expiry)                     { toast('⚠️ Expiry date is required','warn'); return; }
+  if (!qty || parseFloat(qty) < 0) { toast('⚠️ Valid quantity required','warn'); return; }
+
+  if (editId !== null) {
+    const idx = items.findIndex(i => i.ID === editId);
+    if (idx > -1) items[idx] = { ...items[idx], Item:name, Category:cat, Quantity:parseFloat(qty), Unit:unit, 'Expiry Date':expiry, 'Added Date':added||today(), Notes:notes };
+    toast(`✅ "${name}" updated!`, 'success');
+  } else {
+    const newId = items.length ? Math.max(...items.map(i=>i.ID||0))+1 : 1;
+    items.push({ ID:newId, Item:name, Category:cat, Quantity:parseFloat(qty), Unit:unit, 'Expiry Date':expiry, 'Added Date':added||today(), Notes:notes });
+    toast(`✅ "${name}" added!`, 'success');
+  }
+  closeModal(); renderAll(); checkAlerts(); scheduleSave();
+}
+
+function openExpiryModal(id) {
+  const item = items.find(i => i.ID === id); if (!item) return;
+  expiryEditId = id;
+  document.getElementById('expiry-item-name').textContent = item.Item;
+  document.getElementById('f-new-expiry').value = item['Expiry Date'] || '';
+  document.getElementById('expiry-modal').classList.add('show');
+  setTimeout(() => document.getElementById('f-new-expiry').focus(), 100);
+}
+
+function closeExpiryModal() { document.getElementById('expiry-modal').classList.remove('show'); }
+
+function saveExpiry() {
+  const d = document.getElementById('f-new-expiry').value;
+  if (!d) { toast('⚠️ Please select a date','warn'); return; }
+  const item = items.find(i => i.ID === expiryEditId);
+  if (item) { item['Expiry Date'] = d; toast(`📅 Expiry updated for "${item.Item}"`, 'success'); }
+  closeExpiryModal(); renderAll(); checkAlerts(); scheduleSave();
+}
+
+// ── Utilities ──────────────────────────────────────────────────────────────
+function today() { return new Date().toISOString().split('T')[0]; }
+function daysFromNow(n) { const d=new Date(); d.setDate(d.getDate()+n); return d.toISOString().split('T')[0]; }
+function daysUntil(s) {
+  if (!s) return 999;
+  const e = new Date(s+'T00:00:00'), n = new Date(); n.setHours(0,0,0,0);
+  return Math.round((e-n)/86400000);
+}
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function toast(msg, type='success') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`; el.innerHTML = msg;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ── Keyboard shortcuts ─────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey||e.metaKey) && e.key==='n') { e.preventDefault(); openAddModal(); }
+  if (e.key === 'Escape') { closeModal(); closeExpiryModal(); }
+});
+document.getElementById('item-modal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
+document.getElementById('expiry-modal').addEventListener('click', function(e) { if(e.target===this) closeExpiryModal(); });
+</script>
+</body>
+</html>
