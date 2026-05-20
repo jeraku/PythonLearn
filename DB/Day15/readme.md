@@ -18,7 +18,7 @@ pgbouncer/pgbouncer.ini > initialising files are getting stored in it.
 update the below line in pgbouncer.ini file.
 refname = host=127.0.0.1 post=6432 dbname = dvdrental
 
-add below contnet in userlist file
+add below content in userlist file
 /etc/pgbouncer/userlist.txt
 
 echo -n "password" | md5sum
