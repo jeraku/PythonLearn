@@ -1,12 +1,15 @@
-### N8n 
+### N8n
+
 N8N > Workflow + AI Agent
-Wrokflow tool > we can include AI agents and play 
+Wrokflow tool > we can include AI agents and play
 
 Automation tool which work in a defined flow.
-# workflow vs Agentic AI
-Defined to LLM process is AGENTic Flow 
 
-Selfhosting. 
+# workflow vs Agentic AI
+
+Defined to LLM process is AGENTIC Flow
+
+Selfhosting.
 Docker or NPM - installation of n8n options.
 
 steps for integration of N8n with telegram.

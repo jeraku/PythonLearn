@@ -85,3 +85,5 @@ AI agent > take action and decision > chatgpt + outlook email (research + Tools)
 
 
 
+opencode - AI Agent, Runtime platform - Ollama, model - llama
+![alt text](image-1.png)
